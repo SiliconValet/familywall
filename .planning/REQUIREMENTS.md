@@ -12,7 +12,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INFRA-01**: Chromium runs in kiosk mode (full-screen, always-on)
 - [x] **INFRA-02**: Chromium auto-restarts daily to prevent memory leaks
 - [x] **INFRA-03**: Screen blanking is disabled for always-on display
-- [ ] **INFRA-04**: Backend runs under PM2 with memory limits and auto-restart
+- [x] **INFRA-04**: Backend runs under PM2 with memory limits and auto-restart
 
 ### Family Management
 
@@ -121,7 +121,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-01 | Phase 1 | Complete |
 | INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Complete |
-| INFRA-04 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Complete |
 | FAM-01 | Phase 2 | Pending |
 | FAM-02 | Phase 2 | Pending |
 | FAM-03 | Phase 2 | Pending |
