@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily kiosk restart at 3am
+Documentation=https://github.com/yourusername/familywall
+
+[Timer]
+# Run daily at 3am
+OnCalendar=*-*-* 03:00:00
+# Ensure timer runs even if system was off at scheduled time
+Persistent=true
+
+[Install]
+WantedBy=timers.target

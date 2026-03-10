@@ -1,0 +1,12 @@
+[Unit]
+Description=Restart kiosk browser and backend
+Documentation=https://github.com/yourusername/familywall
+After=network.target
+
+[Service]
+Type=oneshot
+User=pi
+ExecStart=/home/pi/familywall/scripts/restart-kiosk.sh
+
+[Install]
+WantedBy=multi-user.target
