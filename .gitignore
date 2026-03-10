@@ -1,0 +1,7 @@
+node_modules/
+server/data/familywall.db
+server/public/
+server/logs/
+dist/
+.env
+.DS_Store
