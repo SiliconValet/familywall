@@ -118,13 +118,68 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (Populated during roadmap creation) | | |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| FAM-01 | Phase 2 | Pending |
+| FAM-02 | Phase 2 | Pending |
+| FAM-03 | Phase 2 | Pending |
+| FAM-04 | Phase 2 | Pending |
+| FAM-05 | Phase 2 | Pending |
+| FAM-06 | Phase 2 | Pending |
+| FAM-07 | Phase 2 | Pending |
+| FAM-08 | Phase 2 | Pending |
+| CHOR-01 | Phase 3 | Pending |
+| CHOR-02 | Phase 3 | Pending |
+| CHOR-03 | Phase 3 | Pending |
+| CHOR-04 | Phase 3 | Pending |
+| CHOR-05 | Phase 3 | Pending |
+| CHOR-06 | Phase 3 | Pending |
+| CHOR-07 | Phase 3 | Pending |
+| CHOR-08 | Phase 3 | Pending |
+| CHOR-09 | Phase 3 | Pending |
+| CHOR-10 | Phase 3 | Pending |
+| CHOR-11 | Phase 3 | Pending |
+| CHOR-12 | Phase 3 | Pending |
+| CAL-01 | Phase 4 | Pending |
+| CAL-02 | Phase 4 | Pending |
+| CAL-03 | Phase 4 | Pending |
+| CAL-04 | Phase 4 | Pending |
+| CAL-05 | Phase 4 | Pending |
+| CAL-06 | Phase 4 | Pending |
+| CAL-07 | Phase 4 | Pending |
+| CAL-08 | Phase 4 | Pending |
+| CAL-09 | Phase 4 | Pending |
+| CAL-10 | Phase 4 | Pending |
+| CAL-11 | Phase 4 | Pending |
+| CAL-12 | Phase 4 | Pending |
+| CHESS-01 | Phase 5 | Pending |
+| CHESS-02 | Phase 5 | Pending |
+| CHESS-03 | Phase 5 | Pending |
+| CHESS-04 | Phase 5 | Pending |
+| CHESS-05 | Phase 5 | Pending |
+| CHESS-06 | Phase 5 | Pending |
+| CHESS-07 | Phase 5 | Pending |
+| CHESS-08 | Phase 5 | Pending |
+| CHESS-09 | Phase 5 | Pending |
+| CHESS-10 | Phase 5 | Pending |
+| CHESS-11 | Phase 5 | Pending |
+| CHESS-12 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 47 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 47 ⚠️
+- Mapped to phases: 47 (100% coverage)
+- Unmapped: 0
+
+**Phase Distribution:**
+- Phase 1 (Infrastructure Setup): 4 requirements
+- Phase 2 (Foundation & Family Management): 8 requirements
+- Phase 3 (Chore System): 12 requirements
+- Phase 4 (Calendar Integration): 12 requirements
+- Phase 5 (Chess Board): 12 requirements
+- Phase 6 (Polish & Integration): 0 explicit requirements (cross-cutting quality)
 
 ---
 *Requirements defined: 2026-03-10*
-*Last updated: 2026-03-10 after initial definition*
+*Last updated: 2026-03-10 after roadmap creation*
