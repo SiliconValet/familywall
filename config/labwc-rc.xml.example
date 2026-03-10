@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- Merge <idle> section into ~/.config/labwc/rc.xml on Raspberry Pi -->
+<!-- This configuration prevents screen blanking for kiosk operation -->
+
+<labwc_config>
+  <idle>
+    <!-- Set timeout to 0 to disable screen blanking -->
+    <timeout>0</timeout>
+    <!-- Prevent idle state from being triggered -->
+    <inhibitIdleHints>yes</inhibitIdleHints>
+  </idle>
+</labwc_config>
