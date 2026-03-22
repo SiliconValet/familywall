@@ -135,13 +135,31 @@
 4. Keep existing flags (`--password-store=basic`, `--use-mock-keychain`)
 
 **Verification:** Pending reboot test - No keyring modal should appear, Chromium should launch successfully.
-**Commit:** [pending]
+**Commit:** c75fbfb
+
+### Issue 6: Confusing "Loading..." Message in React App
+**Problem:** User verification (Task 2) reported app stuck on "Loading..." screen.
+**Root cause:** App.tsx intentionally displayed static "FamilyWall - Loading..." text from Phase 1 placeholder implementation. No actual loading was occurring - the app was fully functional but looked broken.
+**Diagnosis:**
+- Backend serving HTML correctly (verified via logs)
+- JavaScript bundle loading successfully (verified via logs)
+- No API errors or build issues
+- React app rendering correctly - just showing placeholder text
+**Fix:** Updated App.tsx to display system status instead of ambiguous "Loading..." message:
+- Added useEffect hook to fetch /api/health on mount
+- Shows "System Online" with green checkmark when backend responds
+- Shows connection error in red if backend unreachable
+- Clear visual feedback that infrastructure is working
+**Files modified:** client/src/App.tsx
+**Commit:** dbc1741
+**Deployed:** Rebuilt client and pushed to Pi (2026-03-22 17:31)
 
 ## Files Modified During Deployment
 
 Local repository (committed and pushed):
 - server/ecosystem.config.js → server/ecosystem.config.cjs (renamed, converted to CommonJS)
 - config/labwc-autostart.example (fixed chromium binary name, disabled keyring)
+- client/src/App.tsx (replaced "Loading..." with system status display)
 
 Raspberry Pi:
 - ~/.config/labwc/autostart (created by setup-kiosk.sh)
