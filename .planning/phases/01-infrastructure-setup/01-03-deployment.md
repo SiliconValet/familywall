@@ -104,11 +104,24 @@
 **Verification:** Rebooted Pi - Chromium now launches successfully in kiosk mode.
 **Commit:** f58c3f0
 
+### Issue 5: Chromium Keyring Modal Blocking App Load
+**Problem:** After boot, Chromium showed "password missing from keyring" modal and white screen appeared after dismissing it.
+**Root cause:** Chromium tries to access system keyring (gnome-keyring/KWallet) for password storage in kiosk mode. In auto-login sessions, the keyring isn't unlocked, causing a blocking modal that prevents the app from loading.
+**Diagnosis:**
+- Chromium launched successfully (Issue 4 fix worked)
+- Modal appeared blocking UI interaction
+- Known issue with Chromium in headless/kiosk environments
+**Fix:** Added `--password-store=basic` and `--use-mock-keychain` flags to Chromium command in config/labwc-autostart.example.
+- `--password-store=basic` uses basic password storage (no keyring)
+- `--use-mock-keychain` bypasses keyring authentication
+**Verification:** Pending reboot test - Chromium should launch without modal, app should load correctly.
+**Commit:** c75fbfb
+
 ## Files Modified During Deployment
 
 Local repository (committed and pushed):
 - server/ecosystem.config.js → server/ecosystem.config.cjs (renamed, converted to CommonJS)
-- config/labwc-autostart.example (fixed chromium binary name)
+- config/labwc-autostart.example (fixed chromium binary name, disabled keyring)
 
 Raspberry Pi:
 - ~/.config/labwc/autostart (created by setup-kiosk.sh)
