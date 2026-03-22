@@ -93,10 +93,22 @@
 **Fix:** Removed `cwd` field - PM2 uses the directory where it's started.
 **Resolution:** Both issues fixed in same commits.
 
+### Issue 4: Incorrect Chromium Binary Name
+**Problem:** Boot verification failed - Chromium window did not appear after reboot.
+**Root cause:** Autostart script used `chromium-browser` but actual binary on Raspberry Pi OS is `chromium`.
+**Diagnosis:**
+- labwc compositor was running correctly
+- Autostart script executed but failed silently (wrong binary name)
+- No error logging for autostart failures
+**Fix:** Changed `chromium-browser` to `chromium` in config/labwc-autostart.example and redeployed.
+**Verification:** Rebooted Pi - Chromium now launches successfully in kiosk mode.
+**Commit:** f58c3f0
+
 ## Files Modified During Deployment
 
 Local repository (committed and pushed):
 - server/ecosystem.config.js → server/ecosystem.config.cjs (renamed, converted to CommonJS)
+- config/labwc-autostart.example (fixed chromium binary name)
 
 Raspberry Pi:
 - ~/.config/labwc/autostart (created by setup-kiosk.sh)
