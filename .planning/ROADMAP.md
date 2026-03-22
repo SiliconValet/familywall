@@ -30,12 +30,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Chromium automatically restarts daily at 3am without manual intervention
   3. Screen stays on continuously without blanking or sleep mode
   4. Node.js backend runs under PM2 with automatic restart on crashes or memory limits
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
 - [x] 01-01-PLAN.md — Monorepo foundation with npm workspaces and PM2-managed backend
 - [x] 01-02-PLAN.md — Kiosk configuration with labwc autostart and scheduled restart
 - [x] 01-03-PLAN.md — Hardware verification and integration testing
+- [ ] 01-04-PLAN.md — Gap closure: fix restart script binary name, flags, and user paths
 
 ### Phase 2: Foundation & Family Management
 **Goal**: Users can manage family member profiles with PIN-protected actions and touch-friendly UI
@@ -117,7 +118,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Infrastructure Setup | 1/3 | In Progress|  |
+| 1. Infrastructure Setup | 3/4 | In Progress|  |
 | 2. Foundation & Family Management | 0/TBD | Not started | - |
 | 3. Chore System | 0/TBD | Not started | - |
 | 4. Calendar Integration | 0/TBD | Not started | - |
