@@ -1,8 +1,7 @@
-export default {
+module.exports = {
   apps: [{
     name: 'familywall-backend',
     script: './index.js',
-    cwd: '/home/pi/familywall/server',
     instances: 1,
     autorestart: true,
     max_memory_restart: '512M',
