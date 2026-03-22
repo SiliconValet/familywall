@@ -18,4 +18,6 @@ chromium http://localhost:3000 \
   --enable-features=OverlayScrollbar \
   --disable-pinch \
   --overscroll-history-navigation=0 \
-  --touch-events=enabled &
+  --touch-events=enabled \
+  --password-store=basic \
+  --use-mock-keychain &
