@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import fastifyStatic from '@fastify/static';
 import db from './db.js';
+import familyRoutes from './routes/family.js';
+import authRoutes from './routes/auth.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -13,6 +15,10 @@ const fastify = Fastify({
     level: 'info'
   }
 });
+
+// Register API routes before static files (so API routes take priority)
+await fastify.register(familyRoutes);
+await fastify.register(authRoutes);
 
 // Register static file serving for React build
 await fastify.register(fastifyStatic, {
