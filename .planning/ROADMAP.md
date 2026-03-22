@@ -33,9 +33,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Monorepo foundation with npm workspaces and PM2-managed backend
-- [ ] 01-02-PLAN.md — Kiosk configuration with labwc autostart and scheduled restart
-- [ ] 01-03-PLAN.md — Hardware verification and integration testing
+- [x] 01-01-PLAN.md — Monorepo foundation with npm workspaces and PM2-managed backend
+- [x] 01-02-PLAN.md — Kiosk configuration with labwc autostart and scheduled restart
+- [x] 01-03-PLAN.md — Hardware verification and integration testing
 
 ### Phase 2: Foundation & Family Management
 **Goal**: Users can manage family member profiles with PIN-protected actions and touch-friendly UI
