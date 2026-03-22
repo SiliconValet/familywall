@@ -12,7 +12,11 @@ Family members complete their chores consistently because the system makes tasks
 
 ### Validated
 
-(None yet — ship to validate)
+**Phase 1: Infrastructure Setup** (Validated in Phase 1: infrastructure-setup)
+- [x] Raspberry Pi kiosk mode with Chromium full-screen on boot
+- [x] Daily auto-restart at 3am for memory leak prevention
+- [x] Screen blanking disabled for always-on display
+- [x] PM2-managed backend with 512MB memory limit and crash recovery
 
 ### Active
 
@@ -85,4 +89,4 @@ Family members complete their chores consistently because the system makes tasks
 | Chores as priority feature | Most critical for family value, build this robustly first | — Pending |
 
 ---
-*Last updated: 2025-03-10 after initialization*
+*Last updated: 2026-03-22 after Phase 1 completion*
