@@ -111,11 +111,31 @@
 - Chromium launched successfully (Issue 4 fix worked)
 - Modal appeared blocking UI interaction
 - Known issue with Chromium in headless/kiosk environments
-**Fix:** Added `--password-store=basic` and `--use-mock-keychain` flags to Chromium command in config/labwc-autostart.example.
+**Initial Fix (FAILED):** Added `--password-store=basic` and `--use-mock-keychain` flags to Chromium command in config/labwc-autostart.example.
 - `--password-store=basic` uses basic password storage (no keyring)
 - `--use-mock-keychain` bypasses keyring authentication
-**Verification:** Pending reboot test - Chromium should launch without modal, app should load correctly.
+**Initial Verification:** FAILED - Keyring modal still appeared after reboot. User clicked cancel, Chromium did not launch.
 **Commit:** c75fbfb
+
+**Root Cause Analysis (Second Attempt):**
+- Checked running processes: Two gnome-keyring-daemon instances running (PIDs 1984, 1994)
+- Checked journalctl logs: gcr-prompter (GNOME Credential Request prompter) was showing the modal
+- Logs showed keyring daemon starting at boot (17:12:08) and prompting before Chromium launched
+- User canceled modal at 17:20:25, causing Chromium session to fail
+- Previous flags were insufficient because keyring daemon was already running and prompting
+
+**Comprehensive Fix Applied:**
+1. Kill gnome-keyring-daemon and gcr-prompter processes before Chromium starts
+2. Use temporary user data directory (`--user-data-dir=/tmp/chromium-kiosk`) to avoid any keyring config
+3. Add additional anti-keyring flags:
+   - `--disable-sync` - Disable Chrome Sync entirely
+   - `--no-default-browser-check` - Skip browser checks that might trigger keyring
+   - `--disable-password-manager-reauthentication` - Disable password manager auth
+   - `--disable-features=Translate,PasswordManager` - Disable password manager feature
+4. Keep existing flags (`--password-store=basic`, `--use-mock-keychain`)
+
+**Verification:** Pending reboot test - No keyring modal should appear, Chromium should launch successfully.
+**Commit:** [pending]
 
 ## Files Modified During Deployment
 

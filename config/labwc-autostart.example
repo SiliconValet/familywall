@@ -5,14 +5,23 @@
 # Wait for compositor to be ready
 sleep 2
 
+# Kill gnome-keyring-daemon to prevent keyring modal from appearing
+# This must be done before Chromium starts to avoid blocking prompts
+killall gnome-keyring-daemon 2>/dev/null || true
+killall gcr-prompter 2>/dev/null || true
+
+# Brief pause to ensure keyring processes are terminated
+sleep 1
+
 # Launch Chromium in full-screen kiosk mode pointing to local backend
+# Using temporary user data directory to avoid any keyring configuration
 chromium http://localhost:3000 \
   --kiosk \
   --noerrdialogs \
   --disable-infobars \
   --no-first-run \
   --disable-session-crashed-bubble \
-  --disable-features=Translate \
+  --disable-features=Translate,PasswordManager \
   --disable-component-update \
   --ozone-platform=wayland \
   --enable-features=OverlayScrollbar \
@@ -20,4 +29,8 @@ chromium http://localhost:3000 \
   --overscroll-history-navigation=0 \
   --touch-events=enabled \
   --password-store=basic \
-  --use-mock-keychain &
+  --use-mock-keychain \
+  --disable-sync \
+  --no-default-browser-check \
+  --disable-password-manager-reauthentication \
+  --user-data-dir=/tmp/chromium-kiosk &
