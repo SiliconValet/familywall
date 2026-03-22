@@ -22,8 +22,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **FAM-04**: User can view list of all family members
 - [x] **FAM-05**: Parental actions require PIN authentication
 - [x] **FAM-06**: User can set/change parental PIN in settings
-- [ ] **FAM-07**: All interactive elements have 44px minimum touch targets
-- [ ] **FAM-08**: Touch interactions provide clear visual feedback
+- [x] **FAM-07**: All interactive elements have 44px minimum touch targets
+- [x] **FAM-08**: Touch interactions provide clear visual feedback
 
 ### Chore System
 
@@ -128,8 +128,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FAM-04 | Phase 2 | Complete |
 | FAM-05 | Phase 2 | Complete |
 | FAM-06 | Phase 2 | Complete |
-| FAM-07 | Phase 2 | Pending |
-| FAM-08 | Phase 2 | Pending |
+| FAM-07 | Phase 2 | Complete |
+| FAM-08 | Phase 2 | Complete |
 | CHOR-01 | Phase 3 | Pending |
 | CHOR-02 | Phase 3 | Pending |
 | CHOR-03 | Phase 3 | Pending |
