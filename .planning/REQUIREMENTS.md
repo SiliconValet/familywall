@@ -16,12 +16,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Family Management
 
-- [ ] **FAM-01**: User can add family member with name
-- [ ] **FAM-02**: User can edit family member name
-- [ ] **FAM-03**: User can delete family member (with confirmation)
-- [ ] **FAM-04**: User can view list of all family members
-- [ ] **FAM-05**: Parental actions require PIN authentication
-- [ ] **FAM-06**: User can set/change parental PIN in settings
+- [x] **FAM-01**: User can add family member with name
+- [x] **FAM-02**: User can edit family member name
+- [x] **FAM-03**: User can delete family member (with confirmation)
+- [x] **FAM-04**: User can view list of all family members
+- [x] **FAM-05**: Parental actions require PIN authentication
+- [x] **FAM-06**: User can set/change parental PIN in settings
 - [ ] **FAM-07**: All interactive elements have 44px minimum touch targets
 - [ ] **FAM-08**: Touch interactions provide clear visual feedback
 
@@ -122,12 +122,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Complete |
 | INFRA-04 | Phase 1 | Complete |
-| FAM-01 | Phase 2 | Pending |
-| FAM-02 | Phase 2 | Pending |
-| FAM-03 | Phase 2 | Pending |
-| FAM-04 | Phase 2 | Pending |
-| FAM-05 | Phase 2 | Pending |
-| FAM-06 | Phase 2 | Pending |
+| FAM-01 | Phase 2 | Complete |
+| FAM-02 | Phase 2 | Complete |
+| FAM-03 | Phase 2 | Complete |
+| FAM-04 | Phase 2 | Complete |
+| FAM-05 | Phase 2 | Complete |
+| FAM-06 | Phase 2 | Complete |
 | FAM-07 | Phase 2 | Pending |
 | FAM-08 | Phase 2 | Pending |
 | CHOR-01 | Phase 3 | Pending |
