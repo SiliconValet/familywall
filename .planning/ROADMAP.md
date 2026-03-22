@@ -47,10 +47,12 @@ Plans:
   2. User can view complete list of all family members
   3. Parental actions (add/edit/delete) require PIN authentication before proceeding
   4. All buttons and touch targets are minimum 44px and provide clear visual feedback when tapped
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (created during plan-phase)
+- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 3: Chore System
 **Goal**: Family members can create, complete, and track chores with offline capability and automatic recurring task generation
@@ -62,10 +64,12 @@ Plans:
   3. User can see chores grouped by family member with completion counts
   4. User can set chores as recurring (daily/weekly) and they auto-generate at configured time
   5. Chore system works completely offline without internet connection
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (created during plan-phase)
+- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 4: Calendar Integration
 **Goal**: Family can view synchronized Google Calendar events in multiple formats with automatic refresh
@@ -77,10 +81,12 @@ Plans:
   3. Events display with color-coding by family member and show current time indicator in daily view
   4. User can navigate previous/next periods and jump to today with single tap
   5. Calendar automatically refreshes every 15 minutes with latest events from Google
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (created during plan-phase)
+- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 5: Chess Board
 **Goal**: Family members can play long-running chess games with touch controls and persistent game state
@@ -92,10 +98,12 @@ Plans:
   3. Move history displays in algebraic notation with auto-scroll to latest move
   4. User can start new game (with confirmation) and undo last move
   5. Game state persists across browser restarts and daily Chromium reboots
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (created during plan-phase)
+- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 6: Polish & Integration
 **Goal**: Application runs smoothly on real hardware with production-quality UX and successful family user acceptance
@@ -106,10 +114,12 @@ Plans:
   2. Application runs for 24+ hours without memory leaks, crashes, or performance degradation
   3. Offline indicators appear when internet unavailable and retry logic handles API failures gracefully
   4. Family members can complete daily usage scenarios without confusion or assistance
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (created during plan-phase)
+- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ## Progress
 
