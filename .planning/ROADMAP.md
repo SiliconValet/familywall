@@ -52,7 +52,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
 - [x] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
-- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
+- [x] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 3: Chore System
 **Goal**: Family members can create, complete, and track chores with offline capability and automatic recurring task generation
@@ -68,7 +68,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
-- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
+- [x] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
 - [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
 ### Phase 4: Calendar Integration
@@ -84,7 +84,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
+- [x] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
 - [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
 - [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
 
