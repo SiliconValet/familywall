@@ -1,9 +1,8 @@
 import Fastify from 'fastify';
 import fastifyStatic from '@fastify/static';
-import Database from 'better-sqlite3';
+import db from './db.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { mkdirSync, existsSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,17 +13,6 @@ const fastify = Fastify({
     level: 'info'
   }
 });
-
-// Ensure data directory exists
-const dataDir = join(__dirname, 'data');
-if (!existsSync(dataDir)) {
-  mkdirSync(dataDir, { recursive: true });
-}
-
-// Initialize SQLite database
-const dbPath = process.env.DB_PATH || join(dataDir, 'familywall.db');
-const db = new Database(dbPath);
-db.pragma('journal_mode = WAL');
 
 // Register static file serving for React build
 await fastify.register(fastifyStatic, {
