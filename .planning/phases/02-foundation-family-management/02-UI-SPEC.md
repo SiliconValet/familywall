@@ -56,9 +56,8 @@ Declared values (Tailwind default scale, all multiples of 4):
 
 | Role | Size | Weight | Line Height | Usage |
 |------|------|--------|-------------|-------|
-| Body | 16px (base) | 400 (regular) | 1.5 (24px) | Form labels, list text, body copy |
+| Body | 16px (base) | 400 (regular) | 1.5 (24px) | Form labels, list text, body copy, input labels, helper text |
 | Body Large | 18px (text-lg) | 400 (regular) | 1.5 (27px) | Primary family member names in list |
-| Label | 14px (text-sm) | 500 (medium) | 1.4 (19.6px) | Input labels, helper text |
 | Heading | 24px (text-2xl) | 600 (semibold) | 1.2 (28.8px) | Page titles, modal headers |
 
 **Font families:**
@@ -276,7 +275,7 @@ Not primary input method (kiosk is touch-only), but supported:
 │  Add Family Member              [×] │ ← Modal header
 ├─────────────────────────────────────┤
 │                                     │
-│  Name                               │ ← Label (14px)
+│  Name                               │ ← Label (16px)
 │  ┌───────────────────────────────┐ │
 │  │  [Enter name here...]         │ │ ← Input (44px height)
 │  └───────────────────────────────┘ │
