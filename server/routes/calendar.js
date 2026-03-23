@@ -122,7 +122,12 @@ export default async function calendarRoutes(fastify, options) {
       // Redirect to frontend success page
       reply.redirect('/#/calendar-connected');
     } catch (error) {
-      fastify.log.error('OAuth callback error:', error);
+      fastify.log.error('OAuth callback error:', error.message || error);
+      fastify.log.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        code: error.code
+      });
       reply.code(500).send({ error: 'OAuth authentication failed' });
     }
   });
