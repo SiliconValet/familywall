@@ -103,7 +103,7 @@ export function ChoreFormModal({
         description: description || undefined,
         points: points || undefined,
         is_recurring: isRecurring,
-        recurrence_config: isRecurring ? recurrenceConfig : undefined,
+        recurrence_config: isRecurring ? recurrenceConfig : null,
       };
 
       await onSubmit(formData);

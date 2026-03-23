@@ -79,7 +79,7 @@ export default async function choreRoutes(fastify, options) {
           description: { type: 'string', maxLength: 1000 },
           points: { type: 'integer', minimum: 0 },
           is_recurring: { type: 'boolean' },
-          recurrence_config: { type: 'object' }
+          recurrence_config: { type: ['object', 'null'] }
         }
       },
       response: {
@@ -155,7 +155,7 @@ export default async function choreRoutes(fastify, options) {
           description: { type: 'string', maxLength: 1000 },
           points: { type: 'integer', minimum: 0 },
           is_recurring: { type: 'boolean' },
-          recurrence_config: { type: 'object' }
+          recurrence_config: { type: ['object', 'null'] }
         }
       },
       response: {
