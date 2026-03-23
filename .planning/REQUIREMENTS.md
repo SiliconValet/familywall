@@ -45,15 +45,15 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **CAL-01**: App connects to Google Calendar API
 - [x] **CAL-02**: User can configure multiple Google Calendar sources
 - [x] **CAL-03**: Events display with color-coding by family member
-- [ ] **CAL-04**: User can switch between daily view (timeline 6AM-10PM)
-- [ ] **CAL-05**: User can switch between weekly view (7-day grid)
-- [ ] **CAL-06**: User can switch between monthly view (calendar grid)
-- [ ] **CAL-07**: User can navigate to previous/next day/week/month
-- [ ] **CAL-08**: User can jump to today with single tap
+- [x] **CAL-04**: User can switch between daily view (timeline 6AM-10PM)
+- [x] **CAL-05**: User can switch between weekly view (7-day grid)
+- [x] **CAL-06**: User can switch between monthly view (calendar grid)
+- [x] **CAL-07**: User can navigate to previous/next day/week/month
+- [x] **CAL-08**: User can jump to today with single tap
 - [x] **CAL-09**: Calendar auto-refreshes every 15 minutes
-- [ ] **CAL-10**: User can see event details by tapping event
+- [x] **CAL-10**: User can see event details by tapping event
 - [x] **CAL-11**: All-day events display separately from timed events
-- [ ] **CAL-12**: Current time indicator shows in daily view
+- [x] **CAL-12**: Current time indicator shows in daily view
 
 ### Chess Board
 
@@ -145,15 +145,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CAL-01 | Phase 4 | Complete |
 | CAL-02 | Phase 4 | Complete |
 | CAL-03 | Phase 4 | Complete |
-| CAL-04 | Phase 4 | Pending |
-| CAL-05 | Phase 4 | Pending |
-| CAL-06 | Phase 4 | Pending |
-| CAL-07 | Phase 4 | Pending |
-| CAL-08 | Phase 4 | Pending |
+| CAL-04 | Phase 4 | Complete |
+| CAL-05 | Phase 4 | Complete |
+| CAL-06 | Phase 4 | Complete |
+| CAL-07 | Phase 4 | Complete |
+| CAL-08 | Phase 4 | Complete |
 | CAL-09 | Phase 4 | Complete |
-| CAL-10 | Phase 4 | Pending |
+| CAL-10 | Phase 4 | Complete |
 | CAL-11 | Phase 4 | Complete |
-| CAL-12 | Phase 4 | Pending |
+| CAL-12 | Phase 4 | Complete |
 | CHESS-01 | Phase 5 | Pending |
 | CHESS-02 | Phase 5 | Pending |
 | CHESS-03 | Phase 5 | Pending |

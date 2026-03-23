@@ -88,7 +88,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Backend calendar infrastructure: SQLite schema, Google Calendar OAuth, REST API, sync
 - [x] 04-02-PLAN.md — Frontend TypeScript types, data hooks (useCalendarData, useCalendarSync, useInterval)
-- [ ] 04-03-PLAN.md — Calendar view UI: DailyAgenda, WeeklyAgenda, MonthlyGrid, EventCard, navigation
+- [x] 04-03-PLAN.md — Calendar view UI: DailyAgenda, WeeklyAgenda, MonthlyGrid, EventCard, navigation
 - [ ] 04-04-PLAN.md — Calendar Settings modal, App.tsx wiring, visual verification
 
 ### Phase 5: Chess Board
