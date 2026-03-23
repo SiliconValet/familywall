@@ -93,10 +93,13 @@ export default async function calendarRoutes(fastify, options) {
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
 
-      // Get user email from OAuth2 userinfo
-      const oauth2 = google.oauth2({ version: 'v2', auth: oauth2Client });
-      const userInfo = await oauth2.userinfo.get();
-      const googleEmail = userInfo.data.email;
+      // Get user email from ID token payload (no extra API call needed)
+      const ticket = await oauth2Client.verifyIdToken({
+        idToken: tokens.id_token,
+        audience: process.env.GOOGLE_CLIENT_ID
+      });
+      const payload = ticket.getPayload();
+      const googleEmail = payload.email;
 
       // Store tokens in database (INSERT OR REPLACE)
       db.prepare(`
@@ -122,13 +125,11 @@ export default async function calendarRoutes(fastify, options) {
       // Redirect to frontend success page
       reply.redirect('/#/calendar-connected');
     } catch (error) {
-      fastify.log.error('OAuth callback error:', error.message || error);
-      fastify.log.error('Error details:', {
-        message: error.message,
-        stack: error.stack,
-        code: error.code
-      });
-      reply.code(500).send({ error: 'OAuth authentication failed' });
+      console.error('OAuth callback error:', error);
+      console.error('Error type:', typeof error);
+      console.error('Error keys:', Object.keys(error));
+      fastify.log.error('OAuth callback error:', error);
+      reply.code(500).send({ error: 'OAuth authentication failed', details: error.message });
     }
   });
 
