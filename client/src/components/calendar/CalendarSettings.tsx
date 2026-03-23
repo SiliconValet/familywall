@@ -59,7 +59,7 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
 
   const handleToggleCalendar = async (sourceId: string, newSelected: boolean) => {
     try {
-      const res = await fetch(`/api/calendar/sources/${sourceId}`, {
+      const res = await fetch(`/api/calendar/sources/${encodeURIComponent(sourceId)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ selected: newSelected }),
