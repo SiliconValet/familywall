@@ -42,8 +42,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Calendar Integration
 
-- [ ] **CAL-01**: App connects to Google Calendar API
-- [ ] **CAL-02**: User can configure multiple Google Calendar sources
+- [x] **CAL-01**: App connects to Google Calendar API
+- [x] **CAL-02**: User can configure multiple Google Calendar sources
 - [x] **CAL-03**: Events display with color-coding by family member
 - [ ] **CAL-04**: User can switch between daily view (timeline 6AM-10PM)
 - [ ] **CAL-05**: User can switch between weekly view (7-day grid)
@@ -142,8 +142,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHOR-10 | Phase 3 | Complete |
 | CHOR-11 | Phase 3 | Complete |
 | CHOR-12 | Phase 3 | Complete |
-| CAL-01 | Phase 4 | Pending |
-| CAL-02 | Phase 4 | Pending |
+| CAL-01 | Phase 4 | Complete |
+| CAL-02 | Phase 4 | Complete |
 | CAL-03 | Phase 4 | Complete |
 | CAL-04 | Phase 4 | Pending |
 | CAL-05 | Phase 4 | Pending |
