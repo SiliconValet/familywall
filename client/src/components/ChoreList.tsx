@@ -13,12 +13,14 @@ import { ChoreFormModal } from './ChoreFormModal';
 import { CompletedSection } from './CompletedSection';
 import { CelebrationMessage } from './CelebrationMessage';
 import { FamilyMemberBadge } from './FamilyMemberBadge';
+import { WeeklySummary } from './WeeklySummary';
 
 export function ChoreList() {
   const [viewMode, setViewMode] = useState<'daily' | 'weekly'>('daily');
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingChore, setEditingChore] = useState<Chore | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
+  const [showSummary, setShowSummary] = useState(false);
 
   const { activeChores, completedChores, stats, loading, error, createChore, updateChore, completeChore, deleteChore } = useChoreData(viewMode);
   const { members } = useFamilyData();
@@ -74,20 +76,31 @@ export function ChoreList() {
 
       {/* View Toggle */}
       <div className="mb-6">
-        <ToggleGroup
-          type="single"
-          value={viewMode}
-          onValueChange={(value) => value && setViewMode(value as 'daily' | 'weekly')}
-          variant="outline"
-          spacing={0}
-        >
-          <ToggleGroupItem value="daily" className="min-h-12">
-            Today
-          </ToggleGroupItem>
-          <ToggleGroupItem value="weekly" className="min-h-12">
-            This Week
-          </ToggleGroupItem>
-        </ToggleGroup>
+        <div className="flex items-center justify-between">
+          <ToggleGroup
+            type="single"
+            value={viewMode}
+            onValueChange={(value) => value && setViewMode(value as 'daily' | 'weekly')}
+            variant="outline"
+            spacing={0}
+          >
+            <ToggleGroupItem value="daily" className="min-h-12">
+              Today
+            </ToggleGroupItem>
+            <ToggleGroupItem value="weekly" className="min-h-12">
+              This Week
+            </ToggleGroupItem>
+          </ToggleGroup>
+          {viewMode === 'weekly' && (
+            <Button
+              variant="secondary"
+              className="min-h-12"
+              onClick={() => setShowSummary(true)}
+            >
+              Weekly Summary
+            </Button>
+          )}
+        </div>
         {viewMode === 'weekly' && weekRange && (
           <p className="text-sm text-muted-foreground mt-2">{weekRange}</p>
         )}
@@ -221,6 +234,13 @@ export function ChoreList() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Weekly Summary */}
+      <WeeklySummary
+        open={showSummary}
+        onClose={() => setShowSummary(false)}
+        colorIndexMap={colorIndexMap}
+      />
     </div>
   );
 }
