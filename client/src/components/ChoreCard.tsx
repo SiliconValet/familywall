@@ -27,7 +27,7 @@ export function ChoreCard({
   familyMembers,
 }: ChoreCardProps) {
   const [showFamilyPicker, setShowFamilyPicker] = useState(false);
-  const chartColor = `var(--chart-${(colorIndex % 4) + 1})`;
+  const chartColor = `oklch(var(--chart-${(colorIndex % 4) + 1}))`;
   const isCompleted = chore.status !== 'active';
   const isMissed = chore.status === 'auto_completed';
 

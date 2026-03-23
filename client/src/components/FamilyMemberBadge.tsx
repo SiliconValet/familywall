@@ -6,7 +6,7 @@ interface FamilyMemberBadgeProps {
 
 export function FamilyMemberBadge({ name, colorIndex }: FamilyMemberBadgeProps) {
   const initial = name.charAt(0).toUpperCase();
-  const chartColor = `var(--chart-${(colorIndex % 4) + 1})`;
+  const chartColor = `oklch(var(--chart-${(colorIndex % 4) + 1}))`;
 
   return (
     <div
