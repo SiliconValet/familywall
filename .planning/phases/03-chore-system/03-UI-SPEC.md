@@ -42,13 +42,14 @@ Declared values (Tailwind default scale, all multiples of 4):
 | 16 | 64px | Large page-level spacing (if needed) |
 
 **Exceptions for this phase:**
-- Touch targets: Minimum 44px (11 units) for all interactive elements (inherited from Phase 2)
+- Touch targets: Minimum 48px (12 units) for all interactive elements
   - Chore completion checkbox: `min-h-12 min-w-12` (48px) per CHOR-06
-  - Add Chore button: `min-h-11` (44px)
-  - View toggle buttons (Daily/Weekly): `min-h-11` (44px)
-  - Family member picker buttons: `min-h-11` (44px)
+  - Add Chore button: `min-h-12` (48px)
+  - View toggle buttons (Daily/Weekly): `min-h-12` (48px)
+  - Family member picker buttons: `min-h-12` (48px)
+  - Dialog close buttons: `min-h-12` (48px)
 
-**Rationale:** CHOR-06 requires 48px minimum for chore completion checkboxes (larger than Phase 2's 44px baseline) for high-precision interaction. All other touch targets maintain Phase 2's 44px standard.
+**Rationale:** CHOR-06 requires 48px minimum for chore completion checkboxes for high-precision interaction. All interactive elements standardized to 48px for consistent touch targets and grid alignment (48px = 12 × 4px base unit).
 
 ---
 
@@ -124,7 +125,7 @@ Colors use oklch color space (preset configuration). Values shown are CSS custom
 | **Error state (load failed)** | "Unable to load chores. Check your connection and try again." |
 | **Error state (complete failed)** | "Unable to mark complete. Please try again." |
 | **Error state (create failed)** | "Unable to create chore. Please try again." |
-| **Destructive confirmation (Delete)** | Heading: "Delete This Chore?" / Body: "This chore will be permanently removed. This action cannot be undone." / Confirm: "Delete" / Cancel: "Cancel" |
+| **Destructive confirmation (Delete)** | Heading: "Delete This Chore?" / Body: "This chore will be permanently removed. This action cannot be undone." / Confirm: "Delete" / Cancel: "Keep Chore" |
 | **Form labels** | Title: "Chore Title" / Assignee: "Assigned To" / Points: "Points" / Description: "Description (Optional)" / Recurring: "Recurring" |
 | **Recurring frequency options** | "Daily" / "Weekly" / "Custom Days" / "Every N Days" |
 | **Weekly summary heading** | "Weekly Summary" |
@@ -149,17 +150,17 @@ Components needed for Phase 3 (shadcn components + custom):
 
 | Component | Source | Purpose | Touch Optimizations |
 |-----------|--------|---------|---------------------|
-| Button | shadcn (installed Phase 2) | Add Chore CTA, view toggles, form actions | `min-h-11`, active state scale(0.96) |
+| Button | shadcn (installed Phase 2) | Add Chore CTA, view toggles, form actions | `min-h-12`, active state scale(0.96) |
 | Checkbox | shadcn (to install) | Chore completion interaction | `min-h-12 min-w-12` (48px per CHOR-06) |
-| Input | shadcn (installed Phase 2) | Chore title, description, points | `min-h-11`, 16px font size |
-| Dialog | shadcn (installed Phase 2) | Add/Edit chore modal, delete confirmation | Touch-friendly close button (44px) |
+| Input | shadcn (installed Phase 2) | Chore title, description, points | `min-h-12`, 16px font size |
+| Dialog | shadcn (installed Phase 2) | Add/Edit chore modal, delete confirmation | Touch-friendly close button (48px) |
 | Card | shadcn (installed Phase 2) | Chore list items | Left border accent for family member color |
 | Label | shadcn (installed Phase 2) | Form field labels | Associated with input via htmlFor |
 | Toast | shadcn (installed Phase 2) | Completion feedback, undo action | 5-second duration for undo toast |
 | Textarea | shadcn (to install) | Optional chore description field | `min-h-24`, 16px font size |
-| Select | shadcn (to install) | Assignee picker, recurring frequency | Touch-friendly dropdown (44px items) |
-| ToggleGroup | shadcn (to install) | Daily/Weekly view toggle | Each toggle: 44px minimum height |
-| Collapsible | shadcn (to install) | Expandable "Completed" section | Touch-friendly expand/collapse (44px) |
+| Select | shadcn (to install) | Assignee picker, recurring frequency | Touch-friendly dropdown (48px items) |
+| ToggleGroup | shadcn (to install) | Daily/Weekly view toggle | Each toggle: 48px minimum height |
+| Collapsible | shadcn (to install) | Expandable "Completed" section | Touch-friendly expand/collapse (48px) |
 | ChoreList (custom) | Custom component | Main chore list view | Unified list (D-07), color-coded by assignee |
 | ChoreCard (custom) | Custom component | Individual chore display | 48px checkbox, points badge, left border accent |
 | ChoreFormModal (custom) | Custom component | Add/Edit chore form | PIN-gated, recurring toggle, validation |
@@ -175,7 +176,7 @@ npx shadcn add checkbox textarea select toggle-group collapsible
 
 **Custom component guidelines:**
 - All custom components use shadcn primitives where possible
-- Touch targets meet 48px minimum for checkboxes, 44px for all other interactions
+- Touch targets meet 48px minimum for all interactive elements
 - Active states: `scale(0.96)` with 150ms transition
 - Completion animation: Checkbox scale bounce (scale 0 → 1.2 → 1.0, 300ms ease-out)
 - Celebration animation: Fade-in with scale(0.95 → 1.0) over 300ms
@@ -230,7 +231,7 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 **Design notes:**
 - Long-press threshold: 1000ms (D-17)
 - Must cancel long-press if finger moves > 10px (scroll gesture)
-- Undo toast must have large tap target (44px "Undo" button)
+- Undo toast must have large tap target (48px "Undo" button)
 - Position toast near completion action for quick access
 
 ### Daily vs Weekly View Toggle
@@ -242,7 +243,7 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 5. Completed section respects view filter (only show completed from active view period)
 
 **Design notes:**
-- Toggle buttons: Segmented control style, 44px height each
+- Toggle buttons: Segmented control style, 48px height each
 - Active state: Primary accent background, white text
 - Inactive state: Muted background, muted foreground text
 
@@ -261,7 +262,7 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 10. On error: Inline validation errors appear, form remains open
 
 **Edit Chore (PIN-gated):**
-1. User taps edit icon on chore card (44px touch target)
+1. User taps edit icon on chore card (48px touch target with `aria-label="Edit chore"`)
 2. PIN modal appears
 3. On success: Edit Chore modal opens with pre-filled data
 4. User modifies fields
@@ -270,14 +271,15 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 7. On success: Modal closes, chore updates in list, toast "Chore updated successfully"
 
 **Delete Chore (PIN-gated):**
-1. User taps delete icon on chore card (44px touch target)
+1. User taps delete icon on chore card (48px touch target with `aria-label="Delete chore"`)
 2. PIN modal appears
 3. On success: Delete confirmation dialog opens
 4. Dialog shows: "Delete This Chore?" with chore title
-5. User taps "Delete" or "Cancel"
+5. User taps "Delete" or "Keep Chore"
 6. On Delete: Chore removed from list, toast "Chore deleted"
 
 **Design notes:**
+- Edit/Delete icons must include ARIA labels for accessibility (`aria-label="Edit chore"` and `aria-label="Delete chore"`)
 - Recurring frequency UI only appears when "Recurring" toggle is enabled
 - Custom Days shows checkboxes for Mon/Tue/Wed/Thu/Fri/Sat/Sun
 - Every N Days shows number input (1-365 range)
@@ -310,7 +312,7 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 
 **Design notes:**
 - Weekly summary is read-only (no actions)
-- Close via X button (44px) or backdrop tap
+- Close via X button (48px) or backdrop tap
 - Respects current week filter (shows This Week only, not past weeks)
 
 ---
@@ -330,8 +332,8 @@ All interactive elements provide immediate visual feedback (inherited from Phase
 ## Accessibility
 
 ### Touch Target Compliance
-- All interactive elements: Minimum 44×44px (WCAG 2.2 Level AAA)
-- Chore completion checkbox: 48×48px (exceeds minimum per CHOR-06)
+- All interactive elements: Minimum 48×48px (exceeds WCAG 2.2 Level AAA 44px requirement)
+- Chore completion checkbox: 48×48px (per CHOR-06)
 - Adequate spacing between targets: Minimum 8px gap
 
 ### Keyboard Navigation
@@ -356,6 +358,7 @@ Not primary input method (kiosk is touch-only), but supported:
 - Modals use proper ARIA attributes (dialog role, aria-labelledby, aria-describedby)
 - Headings use proper hierarchy (h1 → h2 → h3)
 - Completed section uses `<details>` or ARIA disclosure pattern
+- Edit/Delete icons include `aria-label` attributes for screen reader support
 
 ---
 
@@ -402,7 +405,7 @@ Not primary input method (kiosk is touch-only), but supported:
 - Title: 18px (text-lg), weight 400
 - Assignee name: 14px (text-sm), muted foreground color
 - Points badge: 14px (text-sm), right-aligned, muted background
-- Edit/Delete icons: 32px touch zone each (right side, only visible on hover/long-press)
+- Edit/Delete icons: 48px touch zone each (right side, only visible on hover/long-press), with ARIA labels
 
 **Empty State (All Done):**
 ```
@@ -447,17 +450,17 @@ Not primary input method (kiosk is touch-only), but supported:
 │                                     │
 │  Chore Title                        │ ← Label (16px)
 │  ┌───────────────────────────────┐ │
-│  │  [Enter chore title...]       │ │ ← Input (44px height)
+│  │  [Enter chore title...]       │ │ ← Input (48px height)
 │  └───────────────────────────────┘ │
 │                                     │
 │  Assigned To                        │ ← Label
 │  ┌───────────────────────────────┐ │
-│  │  [Select family member...] ▼  │ │ ← Select dropdown (44px)
+│  │  [Select family member...] ▼  │ │ ← Select dropdown (48px)
 │  └───────────────────────────────┘ │
 │                                     │
 │  Points (Optional)                  │ ← Label
 │  ┌───────────────────────────────┐ │
-│  │  [0]                          │ │ ← Number input (44px)
+│  │  [0]                          │ │ ← Number input (48px)
 │  └───────────────────────────────┘ │
 │                                     │
 │  Description (Optional)             │ ← Label
@@ -474,7 +477,7 @@ Not primary input method (kiosk is touch-only), but supported:
 │  └───────────────────────────────┘ │
 │                                     │
 │                                     │
-│  [Cancel]              [Add Chore]  │ ← Buttons (44px height)
+│  [Cancel]              [Add Chore]  │ ← Buttons (48px height)
 │                                     │
 └─────────────────────────────────────┘
 ```
