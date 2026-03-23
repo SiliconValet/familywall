@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Ready to execute
-stopped_at: Completed 03-chore-system-03-PLAN.md
-last_updated: "2026-03-23T11:21:24.124Z"
+status: Phase complete — ready for verification
+stopped_at: Completed 03-chore-system-04-PLAN.md
+last_updated: "2026-03-23T11:39:50.584Z"
 progress:
   total_phases: 6
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
 ---
 
 # Project State
@@ -49,6 +49,7 @@ Plan: 4 of 4
 | Phase 03-chore-system P02 | 156 | 2 tasks | 12 files |
 | Phase 03-chore-system P01 | 206 | 2 tasks | 7 files |
 | Phase 03-chore-system P03 | 465 | 4 tasks | 15 files |
+| Phase 03-chore-system P04 | 777 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 03-chore-system]: Use TEXT JSON for recurrence_config (more debuggable than JSONB, sufficient for low-frequency queries)
 - [Phase 03-chore-system]: Schedule cron at 12:01am daily (not midnight) to avoid date boundary edge cases
 - [Phase 03-chore-system]: Generated recurring instances have is_recurring=0 to distinguish templates from instances
+- [Phase 03-chore-system]: WeeklySummary full-screen Dialog with grid-cols-[1fr_repeat(7,_48px)] layout for responsive chore info and day columns
+- [Phase 03-chore-system]: Day reordering [1,2,3,4,5,6,0] maps API Sunday-first array to UI Monday-first display per UI-SPEC
 
 ### Pending Todos
 
@@ -87,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T11:21:24.122Z
-Stopped at: Completed 03-chore-system-03-PLAN.md
+Last session: 2026-03-23T11:39:50.582Z
+Stopped at: Completed 03-chore-system-04-PLAN.md
 Resume file: None

@@ -31,7 +31,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **CHOR-02**: User can assign chore to specific family member
 - [x] **CHOR-03**: User can mark chore as complete with single tap
 - [x] **CHOR-04**: User can delete chore (with parental PIN)
-- [ ] **CHOR-05**: User can view chores grouped by family member
+- [x] **CHOR-05**: User can view chores grouped by family member
 - [x] **CHOR-06**: Chore completion checkboxes are 48px minimum size
 - [x] **CHOR-07**: Completed chores fade out or move to completed section
 - [x] **CHOR-08**: User can set chore as recurring (daily or weekly)
@@ -134,7 +134,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHOR-02 | Phase 3 | Complete |
 | CHOR-03 | Phase 3 | Complete |
 | CHOR-04 | Phase 3 | Complete |
-| CHOR-05 | Phase 3 | Pending |
+| CHOR-05 | Phase 3 | Complete |
 | CHOR-06 | Phase 3 | Complete |
 | CHOR-07 | Phase 3 | Complete |
 | CHOR-08 | Phase 3 | Complete |
