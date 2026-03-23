@@ -57,17 +57,17 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
     }
   };
 
-  const handleToggleCalendar = async (sourceId: string, currentSelected: boolean) => {
+  const handleToggleCalendar = async (sourceId: string, newSelected: boolean) => {
     try {
       const res = await fetch(`/api/calendar/sources/${sourceId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ selected: !currentSelected }),
+        body: JSON.stringify({ selected: newSelected }),
       });
       if (!res.ok) throw new Error('Failed to toggle calendar');
 
       // Update local state
-      setSources(sources.map(s => s.id === sourceId ? { ...s, selected: !currentSelected } : s));
+      setSources(sources.map(s => s.id === sourceId ? { ...s, selected: newSelected } : s));
     } catch (err) {
       console.error('Failed to toggle calendar:', err);
     }
@@ -146,7 +146,7 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
                       <Checkbox
                         id={`calendar-${source.id}`}
                         checked={source.selected}
-                        onCheckedChange={() => handleToggleCalendar(source.id, source.selected)}
+                        onCheckedChange={(checked) => handleToggleCalendar(source.id, checked === true)}
                       />
                       <Label
                         htmlFor={`calendar-${source.id}`}
