@@ -58,10 +58,11 @@ Plans:
 **Goal**: Family members can create, complete, and track chores with offline capability and automatic recurring task generation
 **Depends on**: Phase 2
 **Requirements**: CHOR-01, CHOR-02, CHOR-03, CHOR-04, CHOR-05, CHOR-06, CHOR-07, CHOR-08, CHOR-09, CHOR-10, CHOR-11, CHOR-12
+**CHOR-05 Note**: Original requirement "view chores grouped by family member" is interpreted as "view completion data by family member" per user decision D-07 (single unified list). CHOR-05 is satisfied by the Weekly Summary report (Plan 03-04) which shows per-member completion grids, and by completion stats showing per-member counts. The active chore list remains unified with color-coding by assignee.
 **Success Criteria** (what must be TRUE):
   1. User can create chore with title and assign to specific family member
   2. User can mark chore complete with single tap on 48px+ checkbox
-  3. User can see chores grouped by family member with completion counts
+  3. User can view chore completion data by family member via weekly summary and completion counts
   4. User can set chores as recurring (daily/weekly) and they auto-generate at configured time
   5. Chore system works completely offline without internet connection
 **Plans**: 4 plans
