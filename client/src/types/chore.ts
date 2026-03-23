@@ -29,7 +29,7 @@ export interface ChoreFormData {
   description?: string;
   points?: number;
   is_recurring?: boolean;
-  recurrence_config?: RecurrenceConfig;
+  recurrence_config?: RecurrenceConfig | null;
 }
 
 export interface ChoreStats {
