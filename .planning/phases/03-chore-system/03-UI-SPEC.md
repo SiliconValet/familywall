@@ -1,10 +1,11 @@
 ---
 phase: 3
 slug: chore-system
-status: draft
+status: approved
 shadcn_initialized: true
 preset: b5CqHLXuzo
 created: 2026-03-22
+reviewed_at: 2026-03-22
 ---
 
 # Phase 3 — UI Design Contract
