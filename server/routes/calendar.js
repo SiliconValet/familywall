@@ -249,19 +249,19 @@ export default async function calendarRoutes(fastify, options) {
             type: 'object',
             properties: {
               id: { type: 'string' },
+              calendarSourceId: { type: 'string' },
               summary: { type: ['string', 'null'] },
               description: { type: ['string', 'null'] },
               location: { type: ['string', 'null'] },
-              start_time: { type: ['string', 'null'] },
-              end_time: { type: ['string', 'null'] },
-              start_date: { type: ['string', 'null'] },
-              end_date: { type: ['string', 'null'] },
-              is_all_day: { type: 'integer' },
+              startTime: { type: ['string', 'null'] },
+              endTime: { type: ['string', 'null'] },
+              startDate: { type: ['string', 'null'] },
+              endDate: { type: ['string', 'null'] },
+              isAllDay: { type: 'integer' },
               status: { type: 'string' },
-              calendar_source_id: { type: 'string' },
-              calendar_summary: { type: 'string' },
-              family_member_id: { type: ['integer', 'null'] },
-              family_member_name: { type: ['string', 'null'] }
+              calendarName: { type: 'string' },
+              familyMemberId: { type: ['integer', 'null'] },
+              familyMemberName: { type: ['string', 'null'] }
             }
           }
         }
@@ -272,10 +272,20 @@ export default async function calendarRoutes(fastify, options) {
 
     const events = db.prepare(`
       SELECT
-        ce.*,
-        cs.summary as calendar_summary,
-        cs.family_member_id,
-        fm.name as family_member_name
+        ce.id,
+        ce.calendar_source_id as calendarSourceId,
+        ce.summary,
+        ce.description,
+        ce.location,
+        ce.start_time as startTime,
+        ce.end_time as endTime,
+        ce.start_date as startDate,
+        ce.end_date as endDate,
+        ce.is_all_day as isAllDay,
+        ce.status,
+        cs.summary as calendarName,
+        cs.family_member_id as familyMemberId,
+        fm.name as familyMemberName
       FROM calendar_events ce
       JOIN calendar_sources cs ON ce.calendar_source_id = cs.id
       LEFT JOIN family_members fm ON cs.family_member_id = fm.id
