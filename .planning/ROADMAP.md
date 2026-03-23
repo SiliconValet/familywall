@@ -64,12 +64,13 @@ Plans:
   3. User can see chores grouped by family member with completion counts
   4. User can set chores as recurring (daily/weekly) and they auto-generate at configured time
   5. Chore system works completely offline without internet connection
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
-- [x] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
-- [x] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
-- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
+- [ ] 03-01-PLAN.md — Chores table schema, REST API (CRUD/complete/undo), cron job for recurring generation
+- [ ] 03-02-PLAN.md — TypeScript types, data hooks (useChoreData, useLongPress), shadcn component installs
+- [ ] 03-03-PLAN.md — Chore UI components (ChoreCard, ChoreFormModal, CompletedSection) wired into App
+- [ ] 03-04-PLAN.md — Weekly summary report and visual verification checkpoint
 
 ### Phase 4: Calendar Integration
 **Goal**: Family can view synchronized Google Calendar events in multiple formats with automatic refresh
@@ -124,13 +125,13 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Infrastructure Setup | 3/4 | In Progress|  |
-| 2. Foundation & Family Management | 0/TBD | Not started | - |
-| 3. Chore System | 0/TBD | Not started | - |
+| 1. Infrastructure Setup | 4/4 | Complete |  |
+| 2. Foundation & Family Management | 3/3 | Complete | - |
+| 3. Chore System | 0/4 | Not started | - |
 | 4. Calendar Integration | 0/TBD | Not started | - |
 | 5. Chess Board | 0/TBD | Not started | - |
 | 6. Polish & Integration | 0/TBD | Not started | - |
