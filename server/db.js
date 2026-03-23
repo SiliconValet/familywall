@@ -55,6 +55,52 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_chores_assigned_to ON chores(assigned_to);
   CREATE INDEX IF NOT EXISTS idx_chores_created_at ON chores(created_at);
   CREATE INDEX IF NOT EXISTS idx_chores_recurring ON chores(is_recurring);
+
+  CREATE TABLE IF NOT EXISTS calendar_auth (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    google_email TEXT,
+    access_token TEXT,
+    refresh_token TEXT NOT NULL,
+    token_expiry INTEGER,
+    created_at INTEGER DEFAULT (unixepoch()),
+    updated_at INTEGER DEFAULT (unixepoch())
+  );
+
+  CREATE TABLE IF NOT EXISTS calendar_sources (
+    id TEXT PRIMARY KEY,
+    calendar_id TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    background_color TEXT,
+    selected INTEGER DEFAULT 1,
+    family_member_id INTEGER,
+    sync_token TEXT,
+    created_at INTEGER DEFAULT (unixepoch()),
+    updated_at INTEGER DEFAULT (unixepoch()),
+    FOREIGN KEY (family_member_id) REFERENCES family_members(id) ON DELETE SET NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS calendar_events (
+    id TEXT PRIMARY KEY,
+    calendar_source_id TEXT NOT NULL,
+    summary TEXT,
+    description TEXT,
+    location TEXT,
+    start_time TEXT,
+    end_time TEXT,
+    start_date TEXT,
+    end_date TEXT,
+    is_all_day INTEGER DEFAULT 0,
+    status TEXT DEFAULT 'confirmed',
+    raw_json TEXT,
+    created_at INTEGER DEFAULT (unixepoch()),
+    updated_at INTEGER DEFAULT (unixepoch()),
+    FOREIGN KEY (calendar_source_id) REFERENCES calendar_sources(id) ON DELETE CASCADE
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_calendar_events_source ON calendar_events(calendar_source_id);
+  CREATE INDEX IF NOT EXISTS idx_calendar_events_start ON calendar_events(start_time);
+  CREATE INDEX IF NOT EXISTS idx_calendar_events_start_date ON calendar_events(start_date);
+  CREATE INDEX IF NOT EXISTS idx_calendar_sources_selected ON calendar_sources(selected);
 `);
 
 // Seed default PIN (1234) if no PIN exists yet (per D-01)
