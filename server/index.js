@@ -4,6 +4,7 @@ import db from './db.js';
 import familyRoutes from './routes/family.js';
 import authRoutes from './routes/auth.js';
 import choreRoutes from './routes/chores.js';
+import calendarRoutes from './routes/calendar.js';
 import cron from 'node-cron';
 import { generateRecurringChores } from './jobs/recurring-chores.js';
 import { fileURLToPath } from 'url';
@@ -23,6 +24,7 @@ const fastify = Fastify({
 await fastify.register(familyRoutes);
 await fastify.register(authRoutes);
 await fastify.register(choreRoutes);
+await fastify.register(calendarRoutes);
 
 // Register static file serving for React build
 await fastify.register(fastifyStatic, {
