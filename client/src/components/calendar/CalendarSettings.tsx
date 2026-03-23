@@ -58,13 +58,19 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
   };
 
   const handleToggleCalendar = async (sourceId: string, newSelected: boolean) => {
+    console.log('Toggle calendar:', { sourceId, encoded: encodeURIComponent(sourceId), newSelected });
     try {
-      const res = await fetch(`/api/calendar/sources/${encodeURIComponent(sourceId)}`, {
+      const url = `/api/calendar/sources/${encodeURIComponent(sourceId)}`;
+      console.log('Fetch URL:', url);
+      const res = await fetch(url, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ selected: newSelected }),
       });
-      if (!res.ok) throw new Error('Failed to toggle calendar');
+      if (!res.ok) {
+        console.error('Toggle failed:', res.status, await res.text());
+        throw new Error('Failed to toggle calendar');
+      }
 
       // Update local state
       setSources(sources.map(s => s.id === sourceId ? { ...s, selected: newSelected } : s));
@@ -141,15 +147,15 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
               <div className="space-y-3">
                 <h4 className="text-sm font-medium">Calendars to Display</h4>
                 <div className="space-y-2">
-                  {sources.map((source) => (
+                  {sources.map((source, index) => (
                     <div key={source.id} className="flex items-center gap-2 min-h-12">
                       <Checkbox
-                        id={`calendar-${source.id}`}
+                        id={`calendar-${index}`}
                         checked={source.selected}
                         onCheckedChange={(checked) => handleToggleCalendar(source.id, checked === true)}
                       />
                       <Label
-                        htmlFor={`calendar-${source.id}`}
+                        htmlFor={`calendar-${index}`}
                         className="text-lg cursor-pointer flex-1"
                       >
                         {source.summary}
