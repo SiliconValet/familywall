@@ -93,13 +93,8 @@ export default async function calendarRoutes(fastify, options) {
       const { tokens } = await oauth2Client.getToken(code);
       oauth2Client.setCredentials(tokens);
 
-      // Get user email from ID token payload (no extra API call needed)
-      const ticket = await oauth2Client.verifyIdToken({
-        idToken: tokens.id_token,
-        audience: process.env.GOOGLE_CLIENT_ID
-      });
-      const payload = ticket.getPayload();
-      const googleEmail = payload.email;
+      // Email display is optional - we'll get it from calendar API if needed
+      const googleEmail = null;
 
       // Store tokens in database (INSERT OR REPLACE)
       db.prepare(`
