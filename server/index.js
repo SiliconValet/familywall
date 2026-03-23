@@ -3,6 +3,9 @@ import fastifyStatic from '@fastify/static';
 import db from './db.js';
 import familyRoutes from './routes/family.js';
 import authRoutes from './routes/auth.js';
+import choreRoutes from './routes/chores.js';
+import cron from 'node-cron';
+import { generateRecurringChores } from './jobs/recurring-chores.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -19,6 +22,7 @@ const fastify = Fastify({
 // Register API routes before static files (so API routes take priority)
 await fastify.register(familyRoutes);
 await fastify.register(authRoutes);
+await fastify.register(choreRoutes);
 
 // Register static file serving for React build
 await fastify.register(fastifyStatic, {
@@ -64,6 +68,18 @@ const host = '0.0.0.0';
 try {
   await fastify.listen({ port, host });
   fastify.log.info(`Server listening on http://${host}:${port}`);
+
+  // Initialize recurring chore generation cron job (12:01am daily)
+  cron.schedule('1 0 * * *', () => {
+    try {
+      fastify.log.info('Running recurring chore generation...');
+      generateRecurringChores();
+      fastify.log.info('Recurring chore generation complete');
+    } catch (err) {
+      fastify.log.error('Recurring chore generation failed:', err);
+    }
+  });
+  fastify.log.info('Recurring chore cron job scheduled (12:01am daily)');
 } catch (err) {
   fastify.log.error(err);
   process.exit(1);
