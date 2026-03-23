@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import Fastify from 'fastify';
 import fastifyStatic from '@fastify/static';
 import db from './db.js';
