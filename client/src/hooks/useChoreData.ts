@@ -40,7 +40,7 @@ export function useChoreData(view: ViewMode = 'daily') {
     const body = {
       ...data,
       is_recurring: data.is_recurring ? 1 : 0,
-      recurrence_config: data.recurrence_config ? JSON.stringify(data.recurrence_config) : undefined,
+      recurrence_config: data.recurrence_config ? JSON.stringify(data.recurrence_config) : null,
     };
     const res = await fetch('/api/chores', {
       method: 'POST',
@@ -56,7 +56,7 @@ export function useChoreData(view: ViewMode = 'daily') {
     const body = {
       ...data,
       is_recurring: data.is_recurring !== undefined ? (data.is_recurring ? 1 : 0) : undefined,
-      recurrence_config: data.recurrence_config ? JSON.stringify(data.recurrence_config) : undefined,
+      recurrence_config: data.recurrence_config ? JSON.stringify(data.recurrence_config) : null,
     };
     const res = await fetch(`/api/chores/${id}`, {
       method: 'PUT',
