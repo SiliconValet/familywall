@@ -104,9 +104,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
-- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
-- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
+- [ ] 05-01-PLAN.md — Backend chess infrastructure: SQLite schema, REST API, chess.js install, TypeScript types, useChessGame hook
+- [ ] 05-02-PLAN.md — Chess UI components: ChessBoard, ChessSquare, ChessSidebar, MoveHistory, PlayerBadge
+- [ ] 05-03-PLAN.md — App wiring: ChessPage, PlayerPickerModal, NewGameConfirmDialog, Chess tab in navigation
 
 ### Phase 6: Polish & Integration
 **Goal**: Application runs smoothly on real hardware with production-quality UX and successful family user acceptance
@@ -135,5 +135,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Foundation & Family Management | 3/3 | Complete | - |
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
-| 5. Chess Board | 0/TBD | Not started | - |
+| 5. Chess Board | 0/3 | Not started | - |
 | 6. Polish & Integration | 0/TBD | Not started | - |
