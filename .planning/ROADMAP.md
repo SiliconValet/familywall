@@ -83,12 +83,13 @@ Plans:
   3. Events display with color-coding by family member and show current time indicator in daily view
   4. User can navigate previous/next periods and jump to today with single tap
   5. Calendar automatically refreshes every 15 minutes with latest events from Google
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
-- [x] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
-- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
-- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
+- [ ] 04-01-PLAN.md — Backend calendar infrastructure: SQLite schema, Google Calendar OAuth, REST API, sync
+- [ ] 04-02-PLAN.md — Frontend TypeScript types, data hooks (useCalendarData, useCalendarSync, useInterval)
+- [ ] 04-03-PLAN.md — Calendar view UI: DailyAgenda, WeeklyAgenda, MonthlyGrid, EventCard, navigation
+- [ ] 04-04-PLAN.md — Calendar Settings modal, App.tsx wiring, visual verification
 
 ### Phase 5: Chess Board
 **Goal**: Family members can play long-running chess games with touch controls and persistent game state
@@ -132,7 +133,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Setup | 4/4 | Complete |  |
 | 2. Foundation & Family Management | 3/3 | Complete | - |
-| 3. Chore System | 0/4 | Not started | - |
-| 4. Calendar Integration | 0/TBD | Not started | - |
+| 3. Chore System | 4/4 | Complete | - |
+| 4. Calendar Integration | 0/4 | Not started | - |
 | 5. Chess Board | 0/TBD | Not started | - |
 | 6. Polish & Integration | 0/TBD | Not started | - |
