@@ -69,7 +69,7 @@ Plans:
 
 Plans:
 - [ ] 03-01-PLAN.md — Chores table schema, REST API (CRUD/complete/undo), cron job for recurring generation
-- [ ] 03-02-PLAN.md — TypeScript types, data hooks (useChoreData, useLongPress), shadcn component installs
+- [x] 03-02-PLAN.md — TypeScript types, data hooks (useChoreData, useLongPress), shadcn component installs
 - [ ] 03-03-PLAN.md — Chore UI components (ChoreCard, ChoreFormModal, CompletedSection) wired into App
 - [ ] 03-04-PLAN.md — Weekly summary report and visual verification checkpoint
 
