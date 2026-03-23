@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { ChoreList } from './components/ChoreList';
 import { FamilyList } from './components/FamilyList';
+import { CalendarView } from './components/calendar/CalendarView';
+import { CalendarSettings } from './components/calendar/CalendarSettings';
 import { Button } from './components/ui/button';
 
 export default function App() {
-  const [view, setView] = useState<'chores' | 'family'>('chores');
+  const [view, setView] = useState<'chores' | 'calendar' | 'family'>('chores');
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-background">
@@ -18,6 +21,13 @@ export default function App() {
             Chores
           </Button>
           <Button
+            variant={view === 'calendar' ? 'default' : 'outline'}
+            className="min-h-12"
+            onClick={() => setView('calendar')}
+          >
+            Calendar
+          </Button>
+          <Button
             variant={view === 'family' ? 'default' : 'outline'}
             className="min-h-12"
             onClick={() => setView('family')}
@@ -26,7 +36,10 @@ export default function App() {
           </Button>
         </div>
       </nav>
-      {view === 'chores' ? <ChoreList /> : <FamilyList />}
+      {view === 'chores' && <ChoreList />}
+      {view === 'calendar' && <CalendarView onOpenSettings={() => setSettingsOpen(true)} />}
+      {view === 'family' && <FamilyList />}
+      <CalendarSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </main>
   );
 }
