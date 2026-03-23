@@ -31,7 +31,30 @@ db.exec(`
     updated_at INTEGER DEFAULT (unixepoch())
   );
 
+  CREATE TABLE IF NOT EXISTS chores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    assigned_to INTEGER NOT NULL,
+    completed_by INTEGER,
+    points INTEGER DEFAULT 0,
+    status TEXT CHECK(status IN ('active', 'completed', 'auto_completed')) DEFAULT 'active',
+    is_recurring INTEGER DEFAULT 0,
+    recurrence_config TEXT,
+    parent_chore_id INTEGER,
+    created_at INTEGER DEFAULT (unixepoch()),
+    completed_at INTEGER,
+    updated_at INTEGER DEFAULT (unixepoch()),
+    FOREIGN KEY (assigned_to) REFERENCES family_members(id) ON DELETE CASCADE,
+    FOREIGN KEY (completed_by) REFERENCES family_members(id) ON DELETE SET NULL,
+    FOREIGN KEY (parent_chore_id) REFERENCES chores(id) ON DELETE SET NULL
+  );
+
   CREATE INDEX IF NOT EXISTS idx_family_name ON family_members(name);
+  CREATE INDEX IF NOT EXISTS idx_chores_status ON chores(status);
+  CREATE INDEX IF NOT EXISTS idx_chores_assigned_to ON chores(assigned_to);
+  CREATE INDEX IF NOT EXISTS idx_chores_created_at ON chores(created_at);
+  CREATE INDEX IF NOT EXISTS idx_chores_recurring ON chores(is_recurring);
 `);
 
 // Seed default PIN (1234) if no PIN exists yet (per D-01)
