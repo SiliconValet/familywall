@@ -27,17 +27,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Chore System
 
-- [ ] **CHOR-01**: User can create chore with title and assignee
-- [ ] **CHOR-02**: User can assign chore to specific family member
+- [x] **CHOR-01**: User can create chore with title and assignee
+- [x] **CHOR-02**: User can assign chore to specific family member
 - [x] **CHOR-03**: User can mark chore as complete with single tap
-- [ ] **CHOR-04**: User can delete chore (with parental PIN)
+- [x] **CHOR-04**: User can delete chore (with parental PIN)
 - [ ] **CHOR-05**: User can view chores grouped by family member
 - [x] **CHOR-06**: Chore completion checkboxes are 48px minimum size
 - [x] **CHOR-07**: Completed chores fade out or move to completed section
-- [ ] **CHOR-08**: User can set chore as recurring (daily or weekly)
-- [ ] **CHOR-09**: Recurring chores auto-generate at configured time
-- [ ] **CHOR-10**: Chore system works offline (local data storage)
-- [ ] **CHOR-11**: User can see completed chore count per family member
+- [x] **CHOR-08**: User can set chore as recurring (daily or weekly)
+- [x] **CHOR-09**: Recurring chores auto-generate at configured time
+- [x] **CHOR-10**: Chore system works offline (local data storage)
+- [x] **CHOR-11**: User can see completed chore count per family member
 - [x] **CHOR-12**: User sees visual feedback when completing chore
 
 ### Calendar Integration
@@ -130,17 +130,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FAM-06 | Phase 2 | Complete |
 | FAM-07 | Phase 2 | Complete |
 | FAM-08 | Phase 2 | Complete |
-| CHOR-01 | Phase 3 | Pending |
-| CHOR-02 | Phase 3 | Pending |
+| CHOR-01 | Phase 3 | Complete |
+| CHOR-02 | Phase 3 | Complete |
 | CHOR-03 | Phase 3 | Complete |
-| CHOR-04 | Phase 3 | Pending |
+| CHOR-04 | Phase 3 | Complete |
 | CHOR-05 | Phase 3 | Pending |
 | CHOR-06 | Phase 3 | Complete |
 | CHOR-07 | Phase 3 | Complete |
-| CHOR-08 | Phase 3 | Pending |
-| CHOR-09 | Phase 3 | Pending |
-| CHOR-10 | Phase 3 | Pending |
-| CHOR-11 | Phase 3 | Pending |
+| CHOR-08 | Phase 3 | Complete |
+| CHOR-09 | Phase 3 | Complete |
+| CHOR-10 | Phase 3 | Complete |
+| CHOR-11 | Phase 3 | Complete |
 | CHOR-12 | Phase 3 | Complete |
 | CAL-01 | Phase 4 | Pending |
 | CAL-02 | Phase 4 | Pending |

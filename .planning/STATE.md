@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 03-chore-system-02-PLAN.md
-last_updated: "2026-03-23T11:04:23.557Z"
+stopped_at: Completed 03-chore-system-01-PLAN.md
+last_updated: "2026-03-23T11:10:07.163Z"
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 11
-  completed_plans: 8
+  completed_plans: 9
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2025-03-10)
 ## Current Position
 
 Phase: 03 (chore-system) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -47,6 +47,7 @@ Plan: 2 of 4
 | Phase 02-foundation-family-management P02 | 90 | 2 tasks | 9 files |
 | Phase 02-foundation-family-management P03 | 15 | 3 tasks | 9 files |
 | Phase 03-chore-system P02 | 156 | 2 tasks | 12 files |
+| Phase 03-chore-system P01 | 206 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,9 @@ Recent decisions affecting current work:
 - [Phase 02-foundation-family-management]: Implement pending action pattern in usePinAuth for deferred execution after PIN verification
 - [Phase 02-foundation-family-management]: Settings gear icon opens ChangePinModal directly without PIN (PIN verified inside via currentPin field)
 - [Phase 02-foundation-family-management]: Added Vite proxy to forward /api requests to backend during development
+- [Phase 03-chore-system]: Use TEXT JSON for recurrence_config (more debuggable than JSONB, sufficient for low-frequency queries)
+- [Phase 03-chore-system]: Schedule cron at 12:01am daily (not midnight) to avoid date boundary edge cases
+- [Phase 03-chore-system]: Generated recurring instances have is_recurring=0 to distinguish templates from instances
 
 ### Pending Todos
 
@@ -82,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-23T11:04:23.554Z
-Stopped at: Completed 03-chore-system-02-PLAN.md
+Last session: 2026-03-23T11:09:56.134Z
+Stopped at: Completed 03-chore-system-01-PLAN.md
 Resume file: None
