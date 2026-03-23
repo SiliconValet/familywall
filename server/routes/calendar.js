@@ -162,7 +162,7 @@ export default async function calendarRoutes(fastify, options) {
               id: { type: 'string' },
               summary: { type: 'string' },
               backgroundColor: { type: ['string', 'null'] },
-              selected: { type: 'integer' },
+              selected: { type: 'boolean' },
               familyMemberId: { type: ['integer', 'null'] },
               familyMemberName: { type: ['string', 'null'] }
             }
@@ -184,7 +184,11 @@ export default async function calendarRoutes(fastify, options) {
       ORDER BY cs.summary
     `).all();
 
-    return sources;
+    // Convert selected from integer (0/1) to boolean
+    return sources.map(s => ({
+      ...s,
+      selected: s.selected === 1
+    }));
   });
 
   // PUT /api/calendar/sources/:id - Toggle calendar source selection
@@ -208,7 +212,7 @@ export default async function calendarRoutes(fastify, options) {
           type: 'object',
           properties: {
             id: { type: 'string' },
-            selected: { type: 'integer' }
+            selected: { type: 'boolean' }
           }
         }
       }
@@ -229,7 +233,10 @@ export default async function calendarRoutes(fastify, options) {
     }
 
     const updated = db.prepare('SELECT id, selected FROM calendar_sources WHERE id = ?').get(id);
-    return updated;
+    return {
+      ...updated,
+      selected: updated.selected === 1
+    };
   });
 
   // GET /api/calendar/events - Fetch cached events for date range
