@@ -22,7 +22,7 @@ const display = {
 export function VirtualKeyboard() {
   const { visible, inputRef, hideKeyboard } = useKeyboard();
   const keyboardRef = useRef<any>(null);
-  const prevInputRef = useRef<HTMLInputElement | null>(null);
+  const prevInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
 
   // Reset keyboard buffer when input changes (per RESEARCH.md Pitfall 2)
   useEffect(() => {
@@ -37,13 +37,14 @@ export function VirtualKeyboard() {
   const handleChange = useCallback((value: string) => {
     if (!inputRef) return;
 
-    // Set the value on the input and dispatch an input event so React picks up the change
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype, 'value'
-    )?.set;
+    // Set the value on the input/textarea and dispatch an input event so React picks up the change
+    const proto = inputRef instanceof HTMLTextAreaElement
+      ? window.HTMLTextAreaElement.prototype
+      : window.HTMLInputElement.prototype;
+    const nativeValueSetter = Object.getOwnPropertyDescriptor(proto, 'value')?.set;
 
-    if (nativeInputValueSetter) {
-      nativeInputValueSetter.call(inputRef, value);
+    if (nativeValueSetter) {
+      nativeValueSetter.call(inputRef, value);
       inputRef.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }, [inputRef]);
