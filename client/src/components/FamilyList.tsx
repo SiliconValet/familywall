@@ -7,8 +7,6 @@ import { PinModal } from './PinModal';
 import { DeleteConfirmModal } from './DeleteConfirmModal';
 import { ChangePinModal } from './ChangePinModal';
 import { Button } from '@/components/ui/button';
-import { HugeiconsIcon } from '@hugeicons/react';
-import { Settings02Icon } from '@hugeicons/core-free-icons';
 import { FamilyMember } from '@/types/family';
 import { toast } from 'sonner';
 
@@ -68,22 +66,12 @@ export function FamilyList() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="font-heading text-2xl font-semibold">Family Members</h1>
-        <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="touch-target"
-            onClick={() => setShowChangePinModal(true)}
-          >
-            <HugeiconsIcon icon={Settings02Icon} />
-          </Button>
-          <Button
-            className="touch-target"
-            onClick={() => withPinAuth(async () => setShowAddModal(true))}
-          >
-            Add Family Member
-          </Button>
-        </div>
+        <Button
+          className="touch-target"
+          onClick={() => withPinAuth(async () => setShowAddModal(true))}
+        >
+          Add Family Member
+        </Button>
       </div>
 
       {/* Empty State */}
@@ -113,6 +101,33 @@ export function FamilyList() {
           ))}
         </div>
       )}
+
+      {/* System Settings Section */}
+      <div className="mt-8 pt-6 border-t border-border">
+        <h2 className="font-heading text-2xl font-semibold mb-4">System Settings</h2>
+        <div className="flex flex-col gap-2">
+          <Button
+            variant="outline"
+            className="min-h-11 w-full justify-start touch-target"
+            onClick={() => setShowChangePinModal(true)}
+          >
+            Change PIN
+          </Button>
+          <Button
+            variant="destructive"
+            className="min-h-11 w-full touch-target"
+            onClick={() => withPinAuth(async () => {
+              try {
+                await fetch('/api/system/exit-kiosk', { method: 'POST' });
+              } catch {
+                toast.error('Failed to exit kiosk mode');
+              }
+            })}
+          >
+            Exit Kiosk Mode
+          </Button>
+        </div>
+      </div>
 
       {/* Modals */}
       <PinModal
