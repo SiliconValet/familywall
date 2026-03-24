@@ -10,6 +10,7 @@ interface DailyAgendaProps {
   expandedEventId: string | null;
   onToggleExpand: (id: string) => void;
   onCompleteChore: (id: number) => void;
+  memberColorMap?: Map<number, string>;
 }
 
 export function DailyAgenda({
@@ -18,6 +19,7 @@ export function DailyAgenda({
   expandedEventId,
   onToggleExpand,
   onCompleteChore,
+  memberColorMap,
 }: DailyAgendaProps) {
   // Group timed items by hour
   const groupedByHour = timedItems.reduce((acc, item) => {
@@ -68,6 +70,7 @@ export function DailyAgenda({
                     expanded={expandedEventId === id}
                     onToggleExpand={onToggleExpand}
                     onCompleteChore={onCompleteChore}
+                    memberColorMap={memberColorMap}
                   />
                 );
               })}

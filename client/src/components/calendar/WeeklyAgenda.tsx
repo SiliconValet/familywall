@@ -9,6 +9,7 @@ interface WeeklyAgendaProps {
   expandedEventId: string | null;
   onToggleExpand: (id: string) => void;
   onCompleteChore: (id: number) => void;
+  memberColorMap?: Map<number, string>;
 }
 
 export function WeeklyAgenda({
@@ -17,6 +18,7 @@ export function WeeklyAgenda({
   expandedEventId,
   onToggleExpand,
   onCompleteChore,
+  memberColorMap,
 }: WeeklyAgendaProps) {
   const weekStart = startOfWeek(viewDate, { weekStartsOn: 1 }); // Monday
 
@@ -77,6 +79,7 @@ export function WeeklyAgenda({
                       expanded={expandedEventId === id}
                       onToggleExpand={onToggleExpand}
                       onCompleteChore={onCompleteChore}
+                      memberColorMap={memberColorMap}
                     />
                   );
                 })}

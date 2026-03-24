@@ -4,6 +4,7 @@ import type { CalendarViewMode } from '@/types/calendar';
 import { useCalendarData } from '@/hooks/useCalendarData';
 import { useCalendarSync } from '@/hooks/useCalendarSync';
 import { useChoreData } from '@/hooks/useChoreData';
+import { useFamilyData } from '@/hooks/useFamilyData';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Button } from '@/components/ui/button';
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -24,6 +25,8 @@ export function CalendarView({ onOpenSettings }: CalendarViewProps) {
   const { allDayItems, timedItems, mergedItems, loading, authStatus } = useCalendarData(viewDate, viewMode);
   const { syncing, lastSynced, triggerSync } = useCalendarSync();
   const { completeChore } = useChoreData();
+  const { members } = useFamilyData();
+  const memberColorMap = new Map(members.map(m => [m.id, m.color]));
 
   // Navigation handlers
   const handlePrevious = () => {
@@ -175,6 +178,7 @@ export function CalendarView({ onOpenSettings }: CalendarViewProps) {
             expandedEventId={expandedEventId}
             onToggleExpand={handleToggleExpand}
             onCompleteChore={completeChore}
+            memberColorMap={memberColorMap}
           />
         ) : viewMode === 'weekly' ? (
           <WeeklyAgenda
@@ -183,6 +187,7 @@ export function CalendarView({ onOpenSettings }: CalendarViewProps) {
             expandedEventId={expandedEventId}
             onToggleExpand={handleToggleExpand}
             onCompleteChore={completeChore}
+            memberColorMap={memberColorMap}
           />
         ) : (
           <MonthlyGrid
