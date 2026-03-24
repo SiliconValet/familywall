@@ -104,7 +104,7 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-00-PLAN.md — Wave 0 test stubs: behavioral tests for ChessBoard, MoveHistory, useChessGame
+- [x] 05-00-PLAN.md — Wave 0 test stubs: behavioral tests for ChessBoard, MoveHistory, useChessGame
 - [ ] 05-01-PLAN.md — Backend chess infrastructure: SQLite schema, REST API, chess.js install, TypeScript types, useChessGame hook
 - [ ] 05-02-PLAN.md — Chess UI components: ChessBoard, ChessSquare, ChessSidebar, MoveHistory, PlayerBadge
 - [ ] 05-03-PLAN.md — App wiring: ChessPage, PlayerPickerModal, NewGameConfirmDialog, Chess tab in navigation
@@ -136,5 +136,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Foundation & Family Management | 3/3 | Complete | - |
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
-| 5. Chess Board | 0/4 | Not started | - |
+| 5. Chess Board | 1/4 | In Progress|  |
 | 6. Polish & Integration | 0/TBD | Not started | - |
