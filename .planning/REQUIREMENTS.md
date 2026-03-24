@@ -64,7 +64,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **CHESS-05**: Board shows clear visual distinction between white and black pieces
 - [x] **CHESS-06**: Move history displays in algebraic notation
 - [x] **CHESS-07**: Move history auto-scrolls to latest move
-- [ ] **CHESS-08**: Current turn indicator shows whose turn it is
+- [x] **CHESS-08**: Current turn indicator shows whose turn it is
 - [x] **CHESS-09**: User can start new game with confirmation dialog
 - [x] **CHESS-10**: New game resets board and clears move history
 - [x] **CHESS-11**: User can undo last move
@@ -161,7 +161,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHESS-05 | Phase 5 | Complete |
 | CHESS-06 | Phase 5 | Complete |
 | CHESS-07 | Phase 5 | Complete |
-| CHESS-08 | Phase 5 | Pending |
+| CHESS-08 | Phase 5 | Complete |
 | CHESS-09 | Phase 5 | Complete |
 | CHESS-10 | Phase 5 | Complete |
 | CHESS-11 | Phase 5 | Complete |
