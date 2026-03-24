@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-00-PLAN.md
-last_updated: "2026-03-24T00:08:30.586Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-24T00:12:23.905Z"
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 19
-  completed_plans: 15
+  completed_plans: 16
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2025-03-10)
 ## Current Position
 
 Phase: 05 (chess-board) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -54,6 +54,7 @@ Plan: 2 of 4
 | Phase 04 P01 | 173 | 2 tasks | 4 files |
 | Phase 04 P03 | 185 | 2 tasks | 6 files |
 | Phase 05 P00 | 69 | 2 tasks | 3 files |
+| Phase 05 P01 | 2 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,8 @@ Recent decisions affecting current work:
 - [Phase 04-01]: Incremental sync using Google Calendar sync tokens reduces API calls by 90%+ after initial sync
 - [Phase 04-01]: 30-second debounce on manual sync prevents API quota exhaustion from user spam
 - [Phase 05]: Used it.todo pattern for chess test stubs so tests are tracked but do not fail the suite (Nyquist compliance before implementation)
+- [Phase 05]: Server is source of truth for chess game state; client chess instance synced from API responses (FEN) not optimistic local mutations
+- [Phase 05]: POST /api/chess/undo reconstructs FEN by replaying remaining SAN moves from scratch ensuring DB and client stay in sync
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T00:08:30.583Z
-Stopped at: Completed 05-00-PLAN.md
+Last session: 2026-03-24T00:12:23.902Z
+Stopped at: Completed 05-01-PLAN.md
 Resume file: None

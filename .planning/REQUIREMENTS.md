@@ -57,18 +57,18 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Chess Board
 
-- [ ] **CHESS-01**: User can select white player from family members
-- [ ] **CHESS-02**: User can select black player from family members
+- [x] **CHESS-01**: User can select white player from family members
+- [x] **CHESS-02**: User can select black player from family members
 - [x] **CHESS-03**: User can move chess piece by touch drag-and-drop
 - [x] **CHESS-04**: Board displays standard chess piece symbols
 - [x] **CHESS-05**: Board shows clear visual distinction between white and black pieces
 - [x] **CHESS-06**: Move history displays in algebraic notation
 - [x] **CHESS-07**: Move history auto-scrolls to latest move
 - [ ] **CHESS-08**: Current turn indicator shows whose turn it is
-- [ ] **CHESS-09**: User can start new game with confirmation dialog
-- [ ] **CHESS-10**: New game resets board and clears move history
+- [x] **CHESS-09**: User can start new game with confirmation dialog
+- [x] **CHESS-10**: New game resets board and clears move history
 - [x] **CHESS-11**: User can undo last move
-- [ ] **CHESS-12**: Game state persists across browser restarts
+- [x] **CHESS-12**: Game state persists across browser restarts
 
 ## v2 Requirements
 
@@ -154,18 +154,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CAL-10 | Phase 4 | Complete |
 | CAL-11 | Phase 4 | Complete |
 | CAL-12 | Phase 4 | Complete |
-| CHESS-01 | Phase 5 | Pending |
-| CHESS-02 | Phase 5 | Pending |
+| CHESS-01 | Phase 5 | Complete |
+| CHESS-02 | Phase 5 | Complete |
 | CHESS-03 | Phase 5 | Complete |
 | CHESS-04 | Phase 5 | Complete |
 | CHESS-05 | Phase 5 | Complete |
 | CHESS-06 | Phase 5 | Complete |
 | CHESS-07 | Phase 5 | Complete |
 | CHESS-08 | Phase 5 | Pending |
-| CHESS-09 | Phase 5 | Pending |
-| CHESS-10 | Phase 5 | Pending |
+| CHESS-09 | Phase 5 | Complete |
+| CHESS-10 | Phase 5 | Complete |
 | CHESS-11 | Phase 5 | Complete |
-| CHESS-12 | Phase 5 | Pending |
+| CHESS-12 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 47 total
