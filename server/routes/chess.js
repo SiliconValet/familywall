@@ -40,7 +40,13 @@ export default async function chessRoutes(fastify, options) {
     }
 
     const chess = new Chess(game.fen);
-    const move = chess.move({ from, to, promotion });
+    let move;
+    try {
+      move = chess.move({ from, to, promotion });
+    } catch {
+      reply.code(400).send({ error: 'Invalid move' });
+      return;
+    }
 
     if (!move) {
       reply.code(400).send({ error: 'Invalid move' });
@@ -76,8 +82,13 @@ export default async function chessRoutes(fastify, options) {
     // Reconstruct board by replaying all moves except the last
     const remainingMoves = moves.slice(0, -1);
     const chess = new Chess();
-    for (const san of remainingMoves) {
-      chess.move(san);
+    try {
+      for (const san of remainingMoves) {
+        chess.move(san);
+      }
+    } catch {
+      reply.code(500).send({ error: 'Failed to reconstruct game state' });
+      return;
     }
 
     db.prepare(`

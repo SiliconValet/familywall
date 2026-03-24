@@ -53,7 +53,6 @@ export function useChessGame() {
     try {
       const res = await fetch('/api/chess/undo', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
       });
 
       if (!res.ok) return;
@@ -76,7 +75,6 @@ export function useChessGame() {
     try {
       const res = await fetch('/api/chess/new-game', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
       });
 
       if (!res.ok) return;
