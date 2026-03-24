@@ -95,7 +95,11 @@ export function useCalendarData(viewDate: Date, viewMode: 'daily' | 'weekly' | '
         data: c,
       })),
     ];
-    return items.sort((a, b) => a.sortTime - b.sortTime);
+    return items.sort((a, b) => {
+      // Chores float above calendar events; within same type sort by time
+      if (a.type !== b.type) return a.type === 'chore' ? -1 : 1;
+      return a.sortTime - b.sortTime;
+    });
   }, [events, chores]);
 
   // Separate all-day and timed items per D-17

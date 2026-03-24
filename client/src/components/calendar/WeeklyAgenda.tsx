@@ -98,6 +98,7 @@ export function WeeklyAgenda({
                   expanded={expandedEventId === id}
                   onToggleExpand={onToggleExpand}
                   onCompleteChore={onCompleteChore}
+                  memberColorMap={memberColorMap}
                 />
               );
             })}

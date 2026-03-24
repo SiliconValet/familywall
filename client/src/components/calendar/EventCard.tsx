@@ -61,7 +61,7 @@ export function EventCard({ item, expanded, onToggleExpand, onCompleteChore, mem
   return (
     <div
       onClick={handleClick}
-      className="bg-card rounded-2xl p-4 cursor-pointer transition-all duration-300 active:scale-[0.96] active:transition-transform active:duration-150"
+      className={`${isChore ? 'bg-muted/60' : 'bg-card'} rounded-2xl p-4 cursor-pointer transition-all duration-300 active:scale-[0.96] active:transition-transform active:duration-150`}
       style={{
         borderLeftWidth: '4px',
         borderLeftColor: itemColor,
@@ -135,11 +135,16 @@ export function EventCard({ item, expanded, onToggleExpand, onCompleteChore, mem
           )}
         </div>
 
-        {/* Points badge for chores */}
+        {/* Chore badge + points */}
         {isChore && (
-          <span className="text-sm bg-muted px-2 py-1 rounded whitespace-nowrap">
-            {chore!.points}pts
-          </span>
+          <div className="flex flex-col items-end gap-1">
+            <span className="text-xs font-medium bg-primary/15 text-primary px-2 py-0.5 rounded-full whitespace-nowrap">
+              Chore
+            </span>
+            <span className="text-sm bg-muted px-2 py-1 rounded whitespace-nowrap">
+              {chore!.points}pts
+            </span>
+          </div>
         )}
       </div>
     </div>
