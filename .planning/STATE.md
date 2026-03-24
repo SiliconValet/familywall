@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to execute
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-24T00:12:23.905Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-24T00:15:37.566Z"
 progress:
   total_phases: 6
   completed_phases: 3
   total_plans: 19
-  completed_plans: 16
+  completed_plans: 17
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2025-03-10)
 ## Current Position
 
 Phase: 05 (chess-board) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 
 ## Performance Metrics
 
@@ -55,6 +55,7 @@ Plan: 3 of 4
 | Phase 04 P03 | 185 | 2 tasks | 6 files |
 | Phase 05 P00 | 69 | 2 tasks | 3 files |
 | Phase 05 P01 | 2 | 2 tasks | 6 files |
+| Phase 05 P02 | 5 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase 05]: Used it.todo pattern for chess test stubs so tests are tracked but do not fail the suite (Nyquist compliance before implementation)
 - [Phase 05]: Server is source of truth for chess game state; client chess instance synced from API responses (FEN) not optimistic local mutations
 - [Phase 05]: POST /api/chess/undo reconstructs FEN by replaying remaining SAN moves from scratch ensuring DB and client stay in sync
+- [Phase 05-02]: PIECE_SYMBOLS map with Unicode U+2654 through U+265F for zero-asset piece rendering
+- [Phase 05-02]: MoveHistory uses lastMoveRef.current.scrollIntoView triggered on moves.length change for auto-scroll
 
 ### Pending Todos
 
@@ -101,6 +104,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-24T00:12:23.902Z
-Stopped at: Completed 05-01-PLAN.md
+Last session: 2026-03-24T00:15:37.563Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
