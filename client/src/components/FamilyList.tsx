@@ -21,14 +21,14 @@ export function FamilyList() {
   const [deletingMember, setDeletingMember] = useState<FamilyMember | null>(null);
   const [showChangePinModal, setShowChangePinModal] = useState(false);
 
-  const handleAdd = async (name: string) => {
-    await addMember(name);
+  const handleAdd = async (name: string, color: string) => {
+    await addMember(name, color);
     toast('Family member added successfully');
   };
 
-  const handleEdit = async (name: string) => {
+  const handleEdit = async (name: string, color: string) => {
     if (editingMember) {
-      await updateMember(editingMember.id, name);
+      await updateMember(editingMember.id, name, color);
       toast('Family member updated successfully');
       setEditingMember(null);
     }
@@ -136,6 +136,7 @@ export function FamilyList() {
         onClose={() => setEditingMember(null)}
         onSubmit={handleEdit}
         initialName={editingMember?.name}
+        initialColor={editingMember?.color}
         mode="edit"
       />
 

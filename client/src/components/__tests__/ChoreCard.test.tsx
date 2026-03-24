@@ -25,9 +25,7 @@ vi.mock('@/hooks/useLongPress', () => ({
 }));
 
 const mockFamilyMembers: FamilyMember[] = [
-  // @ts-expect-error -- color field added to FamilyMember type in Plan 01
   { id: 1, name: 'Alice', color: '#D50000', created_at: 123, updated_at: 123 },
-  // @ts-expect-error -- color field added to FamilyMember type in Plan 01
   { id: 2, name: 'Bob', color: '#039BE5', created_at: 124, updated_at: 124 },
 ];
 
@@ -51,7 +49,6 @@ const mockChore: Chore = {
 
 describe('FamilyMemberBadge', () => {
   it('renders initial letter and applies hex color', () => {
-    // @ts-expect-error -- color prop replaces colorIndex in Plan 02
     const { container } = render(<FamilyMemberBadge name="Alice" color="#D50000" />);
     expect(screen.getByText('A')).toBeInTheDocument();
     const badge = container.querySelector('div');

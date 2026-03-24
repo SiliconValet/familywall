@@ -6,13 +6,15 @@ import { FamilyMemberBadge } from '@/components/FamilyMemberBadge';
 import { formatWeekRange } from '@/utils/date-filters';
 import type { WeeklySummaryRow } from '@/types/chore';
 
+const DEFAULT_COLOR = '#039BE5';
+
 interface WeeklySummaryProps {
   open: boolean;
   onClose: () => void;
-  colorIndexMap: Map<number, number>;
+  colorMap: Map<number, string>;
 }
 
-export function WeeklySummary({ open, onClose, colorIndexMap }: WeeklySummaryProps) {
+export function WeeklySummary({ open, onClose, colorMap }: WeeklySummaryProps) {
   const [data, setData] = useState<WeeklySummaryRow[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -79,14 +81,13 @@ export function WeeklySummary({ open, onClose, colorIndexMap }: WeeklySummaryPro
 
               {/* Data Rows */}
               {data.map((row, rowIndex) => {
-                const colorIndex = colorIndexMap.get(row.assigned_to) || 0;
-                const chartColor = `var(--chart-${(colorIndex % 4) + 1})`;
+                const memberColor = colorMap.get(row.assigned_to) || DEFAULT_COLOR;
 
                 return (
                   <div key={rowIndex} className="contents">
                     {/* Chore info cell */}
-                    <div className="flex items-center gap-2 py-2" style={{ borderLeft: `4px solid ${chartColor}`, paddingLeft: '8px' }}>
-                      <FamilyMemberBadge name={row.assignee_name} colorIndex={colorIndex} />
+                    <div className="flex items-center gap-2 py-2" style={{ borderLeft: `4px solid ${memberColor}`, paddingLeft: '8px' }}>
+                      <FamilyMemberBadge name={row.assignee_name} color={memberColor} />
                       <span className="text-sm">{row.chore_title}</span>
                     </div>
 

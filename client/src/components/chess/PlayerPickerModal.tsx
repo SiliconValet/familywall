@@ -2,6 +2,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { FamilyMemberBadge } from '../FamilyMemberBadge';
 import type { FamilyMember } from '../../types/family';
 
+const DEFAULT_COLOR = '#039BE5';
+
 interface PlayerPickerModalProps {
   open: boolean;
   onClose: () => void;
@@ -23,13 +25,13 @@ export function PlayerPickerModal({ open, onClose, onSelect, title, members }: P
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-1">
-          {members.map((member, index) => (
+          {members.map((member) => (
             <button
               key={member.id}
               className="flex items-center gap-3 px-3 min-h-[48px] rounded-lg hover:bg-muted active:bg-muted/80 text-left w-full transition-colors"
               onClick={() => handleSelect(member.id)}
             >
-              <FamilyMemberBadge name={member.name} colorIndex={index} />
+              <FamilyMemberBadge name={member.name} color={member.color || DEFAULT_COLOR} />
               <span className="text-base font-medium">{member.name}</span>
             </button>
           ))}

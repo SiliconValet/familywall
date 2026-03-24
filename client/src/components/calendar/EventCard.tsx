@@ -4,24 +4,30 @@ import type { CalendarEvent } from '@/types/calendar';
 import type { Chore } from '@/types/chore';
 import { Checkbox } from '@/components/ui/checkbox';
 
+const DEFAULT_COLOR = '#039BE5';
+
 interface EventCardProps {
   item: MergedTimelineItem;
   expanded: boolean;
   onToggleExpand: (id: string) => void;
   onCompleteChore?: (id: number) => void;
+  memberColorMap?: Map<number, string>;
 }
 
-export function EventCard({ item, expanded, onToggleExpand, onCompleteChore }: EventCardProps) {
+export function EventCard({ item, expanded, onToggleExpand, onCompleteChore, memberColorMap }: EventCardProps) {
   const isEvent = item.type === 'event';
   const isChore = item.type === 'chore';
 
   const event = isEvent ? (item.data as CalendarEvent) : null;
   const chore = isChore ? (item.data as Chore) : null;
 
-  // Calculate chart color index from familyMemberId
-  const familyMemberId = isEvent ? event!.familyMemberId : chore!.assigned_to;
-  const chartColorIndex = ((familyMemberId || 0) % 4) + 1;
-  const chartColor = `oklch(var(--chart-${chartColorIndex}))`;
+  // Determine color: for events use familyMemberColor, for chores look up member
+  let itemColor = DEFAULT_COLOR;
+  if (isEvent && event!.familyMemberColor) {
+    itemColor = event!.familyMemberColor;
+  } else if (isChore && memberColorMap && chore!.assigned_to) {
+    itemColor = memberColorMap.get(chore!.assigned_to) || DEFAULT_COLOR;
+  }
 
   // Format time label for events
   const timeLabel = isEvent && !item.isAllDay && event!.startTime
@@ -58,7 +64,7 @@ export function EventCard({ item, expanded, onToggleExpand, onCompleteChore }: E
       className="bg-card rounded-2xl p-4 cursor-pointer transition-all duration-300 active:scale-[0.96] active:transition-transform active:duration-150"
       style={{
         borderLeftWidth: '4px',
-        borderLeftColor: chartColor,
+        borderLeftColor: itemColor,
         minHeight: '48px',
         opacity: isCompleted ? 0.7 : 1,
         height: expanded ? 'auto' : undefined,
@@ -74,7 +80,7 @@ export function EventCard({ item, expanded, onToggleExpand, onCompleteChore }: E
             <Checkbox
               checked={isCompleted}
               disabled={isCompleted}
-              style={isCompleted ? { borderColor: chartColor, backgroundColor: chartColor } : {}}
+              style={isCompleted ? { borderColor: itemColor, backgroundColor: itemColor } : {}}
             />
           </div>
         )}

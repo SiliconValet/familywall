@@ -1,17 +1,16 @@
 interface FamilyMemberBadgeProps {
   name: string;
-  colorIndex: number;
+  color: string;
   size?: number;
 }
 
-export function FamilyMemberBadge({ name, colorIndex }: FamilyMemberBadgeProps) {
+export function FamilyMemberBadge({ name, color }: FamilyMemberBadgeProps) {
   const initial = name.charAt(0).toUpperCase();
-  const chartColor = `oklch(var(--chart-${(colorIndex % 4) + 1}))`;
 
   return (
     <div
       className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold text-white"
-      style={{ backgroundColor: chartColor }}
+      style={{ backgroundColor: color }}
     >
       {initial}
     </div>

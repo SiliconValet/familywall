@@ -21,21 +21,25 @@ export function useFamilyData() {
     }
   }, []);
 
-  const addMember = useCallback(async (name: string) => {
+  const addMember = useCallback(async (name: string, color?: string) => {
+    const body: Record<string, string> = { name: name.trim() };
+    if (color) body.color = color;
     const res = await fetch('/api/family', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim() }),
+      body: JSON.stringify(body),
     });
     if (!res.ok) throw new Error('Failed to add family member');
     await fetchMembers(); // Re-fetch to get sorted list (per D-09)
   }, [fetchMembers]);
 
-  const updateMember = useCallback(async (id: number, name: string) => {
+  const updateMember = useCallback(async (id: number, name: string, color?: string) => {
+    const body: Record<string, string> = { name: name.trim() };
+    if (color) body.color = color;
     const res = await fetch(`/api/family/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim() }),
+      body: JSON.stringify(body),
     });
     if (!res.ok) throw new Error('Failed to update family member');
     await fetchMembers(); // Re-fetch to get sorted list (per D-09)

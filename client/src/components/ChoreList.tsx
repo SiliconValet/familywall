@@ -15,6 +15,8 @@ import { CelebrationMessage } from './CelebrationMessage';
 import { FamilyMemberBadge } from './FamilyMemberBadge';
 import { WeeklySummary } from './WeeklySummary';
 
+const DEFAULT_COLOR = '#039BE5';
+
 export function ChoreList() {
   const [viewMode, setViewMode] = useState<'daily' | 'weekly'>('daily');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -26,7 +28,10 @@ export function ChoreList() {
   const { members } = useFamilyData();
   const { withPinAuth, showPinModal, closePinModal, verifyPin, isVerifying, pinError, clearError } = usePinAuth();
 
-  // Create stable color index mapping for family members
+  // Create stable hex color mapping for family members
+  const colorMap = new Map(members.map((m) => [m.id, m.color || DEFAULT_COLOR]));
+
+  // Keep colorIndexMap for backward compatibility with CompletedSection (passes colorIndex to ChoreCard)
   const colorIndexMap = new Map(members.map((m, i) => [m.id, i]));
 
   const handleAddChore = () => {
@@ -110,10 +115,10 @@ export function ChoreList() {
       {stats.length > 0 && (
         <div className="mb-6 flex flex-wrap gap-4">
           {stats.map((stat) => {
-            const colorIndex = colorIndexMap.get(stat.member_id) || 0;
+            const memberColor = colorMap.get(stat.member_id) || DEFAULT_COLOR;
             return (
               <div key={stat.member_id} className="flex items-center gap-2">
-                <FamilyMemberBadge name={stat.member_name} colorIndex={colorIndex} />
+                <FamilyMemberBadge name={stat.member_name} color={memberColor} />
                 <span className="text-sm">
                   {stat.member_name}: {stat.completed_count} done
                 </span>
@@ -239,7 +244,7 @@ export function ChoreList() {
       <WeeklySummary
         open={showSummary}
         onClose={() => setShowSummary(false)}
-        colorIndexMap={colorIndexMap}
+        colorMap={colorMap}
       />
     </div>
   );

@@ -9,6 +9,8 @@ import { FamilyMemberBadge } from './FamilyMemberBadge';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { PencilEdit02Icon, Delete02Icon } from '@hugeicons/core-free-icons';
 
+const DEFAULT_COLOR = '#039BE5';
+
 interface ChoreCardProps {
   chore: Chore;
   colorIndex: number;
@@ -20,14 +22,18 @@ interface ChoreCardProps {
 
 export function ChoreCard({
   chore,
-  colorIndex,
+  colorIndex: _colorIndex,
   onComplete,
   onEdit,
   onDelete,
   familyMembers,
 }: ChoreCardProps) {
   const [showFamilyPicker, setShowFamilyPicker] = useState(false);
-  const chartColor = `oklch(var(--chart-${(colorIndex % 4) + 1}))`;
+
+  // Derive hex color from assigned family member
+  const assignedMember = familyMembers.find(m => m.id === chore.assigned_to);
+  const memberColor = assignedMember?.color || DEFAULT_COLOR;
+
   const isCompleted = chore.status !== 'active';
   const isMissed = chore.status === 'auto_completed';
 
@@ -56,7 +62,7 @@ export function ChoreCard({
         className="flex items-center gap-4 bg-card rounded-2xl p-4"
         style={{
           borderLeftWidth: '4px',
-          borderLeftColor: chartColor,
+          borderLeftColor: memberColor,
           opacity: isCompleted ? 0.7 : 1,
         }}
       >
@@ -68,7 +74,7 @@ export function ChoreCard({
           <Checkbox
             checked={isCompleted}
             disabled={isCompleted}
-            style={isCompleted ? { borderColor: chartColor, backgroundColor: chartColor } : {}}
+            style={isCompleted ? { borderColor: memberColor, backgroundColor: memberColor } : {}}
           />
         </div>
 
@@ -87,7 +93,7 @@ export function ChoreCard({
             )}
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-            <FamilyMemberBadge name={chore.assignee_name} colorIndex={colorIndex} />
+            <FamilyMemberBadge name={chore.assignee_name} color={memberColor} />
             <span>{chore.assignee_name}</span>
           </div>
         </div>

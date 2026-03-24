@@ -4,16 +4,23 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
+const PALETTE = [
+  '#D50000', '#E67C73', '#F4511E', '#F6BF26',
+  '#33B679', '#0B8043', '#039BE5', '#3F51B5'
+];
+
 interface FamilyFormModalProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (name: string) => Promise<void>;
+  onSubmit: (name: string, color: string) => Promise<void>;
   initialName?: string;
+  initialColor?: string;
   mode: 'add' | 'edit';
 }
 
-export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', mode }: FamilyFormModalProps) {
+export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', initialColor, mode }: FamilyFormModalProps) {
   const [name, setName] = useState(initialName);
+  const [color, setColor] = useState(initialColor || PALETTE[0]);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -22,11 +29,12 @@ export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', mod
   useEffect(() => {
     if (open) {
       setName(initialName);
+      setColor(initialColor || PALETTE[0]);
       setError(null);
       setTouched(false);
       setIsSubmitting(false);
     }
-  }, [open, initialName]);
+  }, [open, initialName, initialColor]);
 
   const validateName = (value: string): string | null => {
     const trimmed = value.trim();
@@ -57,7 +65,7 @@ export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', mod
 
     setIsSubmitting(true);
     try {
-      await onSubmit(name.trim());
+      await onSubmit(name.trim(), color);
       onClose();
     } catch (err) {
       setError('Failed to save. Please try again.');
@@ -101,6 +109,25 @@ export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', mod
                 <p className="text-destructive text-sm mt-1">{error}</p>
               )}
             </div>
+
+            <div className="mt-4">
+              <Label>Color</Label>
+              <div className="flex gap-2 mt-2">
+                {PALETTE.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    className={`h-10 w-10 rounded-full transition-transform active:scale-92 ${
+                      color === c ? 'ring-2 ring-primary ring-offset-2' : ''
+                    }`}
+                    style={{ backgroundColor: c }}
+                    onClick={() => setColor(c)}
+                    aria-label={c}
+                    aria-pressed={color === c}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
 
           <DialogFooter>
@@ -111,7 +138,7 @@ export function FamilyFormModal({ open, onClose, onSubmit, initialName = '', mod
               onClick={onClose}
               disabled={isSubmitting}
             >
-              Cancel
+              Discard
             </Button>
             <Button
               type="submit"
