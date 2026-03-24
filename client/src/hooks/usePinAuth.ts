@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 interface UsePinAuthReturn {
   verifyPin: (pin: string) => Promise<boolean>;
@@ -15,6 +15,7 @@ export function usePinAuth(): UsePinAuthReturn {
   const [pinError, setPinError] = useState<string | null>(null);
   const [showPinModal, setShowPinModal] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => Promise<void>) | null>(null);
+  const lastAuthTime = useRef<number>(0);
 
   const clearError = useCallback(() => setPinError(null), []);
 
@@ -33,7 +34,9 @@ export function usePinAuth(): UsePinAuthReturn {
         setPinError('Incorrect PIN. Please try again.');
         return false;
       }
-      // PIN valid - execute pending action
+      // PIN valid - record auth time for grace period (D-16, D-17, D-18)
+      lastAuthTime.current = Date.now();
+      // Execute pending action
       if (pendingAction) {
         await pendingAction();
         setPendingAction(null);
@@ -49,6 +52,13 @@ export function usePinAuth(): UsePinAuthReturn {
   }, [pendingAction]);
 
   const withPinAuth = useCallback((action: () => Promise<void>) => {
+    const elapsed = Date.now() - lastAuthTime.current;
+    if (lastAuthTime.current > 0 && elapsed < 60_000) {
+      // Within 60s grace period — skip PIN modal, execute directly (D-16, D-17)
+      lastAuthTime.current = Date.now(); // Reset timer
+      action();
+      return;
+    }
     setPendingAction(() => action);
     setPinError(null);
     setShowPinModal(true);

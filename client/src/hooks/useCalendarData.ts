@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
+import { toast } from 'sonner';
 import type { CalendarEvent, CalendarAuthStatus, MergedTimelineItem } from '../types/calendar';
 import type { Chore } from '../types/chore';
 import { startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, format } from 'date-fns';
@@ -45,6 +46,7 @@ export function useCalendarData(viewDate: Date, viewMode: 'daily' | 'weekly' | '
       const data: CalendarEvent[] = await res.json();
       setEvents(data);
     } catch {
+      toast.error('Calendar unavailable \u2014 no internet connection');
       setError('Unable to load calendar events.');
     }
   }, [dateRange]);
