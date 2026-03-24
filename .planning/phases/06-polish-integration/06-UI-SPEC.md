@@ -120,6 +120,7 @@ Drawn from Google Calendar's palette, verified accessible on white backgrounds. 
 |---------|------|
 | **Primary CTA — Settings tab** | "Save Changes" |
 | **Primary CTA — Add Member** | "Add Family Member" (inherited from Phase 2) |
+| **Modal dismiss action** | "Discard" (used in both Add and Edit flows; modal title provides noun context) |
 | **Color picker label** | "Color" |
 | **Color picker selected state** | [no text — ring/outline indicator only] |
 | **System Settings section heading** | "System Settings" |
@@ -149,7 +150,7 @@ Drawn from Google Calendar's palette, verified accessible on white backgrounds. 
 | Exit Kiosk Mode | Tap "Exit Kiosk Mode" button in Settings | Yes (D-14) | PIN entry IS the confirmation — no additional dialog |
 | Delete Family Member | Tap delete icon on member card | Yes (inherited) | PIN + "Delete [Name]?" dialog (inherited from Phase 2) |
 
-**Source:** CONTEXT.md D-12 through D-15 (Settings/exit kiosk), D-01 (offline toast). Toast copy from RESEARCH.md Pattern 7 (Claude's Discretion). Exit kiosk copy authored here.
+**Source:** CONTEXT.md D-12 through D-15 (Settings/exit kiosk), D-01 (offline toast). Toast copy from RESEARCH.md Pattern 7 (Claude's Discretion). Exit kiosk copy authored here. "Discard" label authored in revision 2026-03-23 (checker BLOCK — Dimension 1).
 
 ---
 
@@ -246,6 +247,8 @@ Drawn from Google Calendar's palette, verified accessible on white backgrounds. 
 - On edit: current member color is pre-selected.
 - No null/empty color state — every member always has an assigned color.
 
+**Focal point:** Name input field. Focus lands here on modal open. Color swatch row is below and reachable by tap; no tab-to-swatch required.
+
 **Modal layout with color picker:**
 ```
 ┌────────────────────────────────────┐
@@ -261,7 +264,7 @@ Drawn from Google Calendar's palette, verified accessible on white backgrounds. 
 │  ● ● ● ● ● ● ● ●                  │  ← 8 swatches, 40px each, 8px gap
 │  (selected swatch has ring)        │
 │                                    │
-│  [Cancel]           [Add Member]   │
+│  [Discard]          [Add Member]   │
 │                                    │
 └────────────────────────────────────┘
 ```
@@ -282,6 +285,8 @@ Drawn from Google Calendar's palette, verified accessible on white backgrounds. 
   2. **System Settings section** (new): Section heading "System Settings" at heading size (24px, semibold). Below it:
      - "Change PIN" button (secondary/outline variant, 44px height) — existing functionality, opens ChangePinModal.
      - "Exit Kiosk Mode" button (destructive variant, 44px height, full width). PIN required before executing.
+
+**Focal point (Settings tab):** Family Members list. Page loads with focus at the top of the list. System Settings section is reached by scrolling down; no auto-focus to System Settings on page load.
 
 **Exit Kiosk flow:**
 1. User taps "Exit Kiosk Mode" button.
@@ -322,7 +327,7 @@ Color swatch buttons: use the same active scale but scale to `0.92` (more notice
 │  Chores | Calendar | Chess | Settings │ ← "Settings" is rightmost tab
 ├────────────────────────────────────┤
 │                                    │
-│  Family Members                    │  ← existing section
+│  Family Members                    │  ← existing section, focal point on load
 │  ┌──────────────────────────────┐  │
 │  │  Alice ● [Edit]              │  │  ← color dot next to name
 │  ├──────────────────────────────┤  │
@@ -427,6 +432,7 @@ Color swatch buttons: use the same active scale but scale to `0.92` (more notice
 
 ### Semantic HTML (inherited + updated)
 - Color swatch buttons use `<button>` with `aria-label="{colorName}"` and `aria-pressed="{true/false}"` for selected state
+- Delete icon button on member card: `aria-label="Delete [Name]"` where [Name] is the family member's name, populated at render time (e.g., `aria-label="Delete Alice"`)
 - Settings section uses `<section>` with appropriate heading hierarchy
 - Virtual keyboard keys use `<button>` elements
 
@@ -468,6 +474,10 @@ Color swatch buttons: use the same active scale but scale to `0.92` (more notice
 | Exit Kiosk copy | Authored in this session (Claude's Discretion) |
 | PIN session timeout (60s, useRef, silent) | CONTEXT.md D-16 through D-19 |
 | Touch feedback (.touch-target, scale 0.96) | Phase 2 UI-SPEC + index.css |
+| Modal dismiss label ("Discard") | Revision 2026-03-23 — checker BLOCK Dimension 1 |
+| Focal point — FamilyFormModal | Revision 2026-03-23 — checker recommendation |
+| Focal point — Settings tab | Revision 2026-03-23 — checker recommendation |
+| aria-label on delete icon button | Revision 2026-03-23 — checker recommendation |
 
 ---
 
