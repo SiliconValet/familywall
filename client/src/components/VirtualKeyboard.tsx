@@ -85,9 +85,8 @@ export function VirtualKeyboard() {
     <div
       data-keyboard
       // preventDefault keeps the focused input from blurring when tapping a key.
-      // stopPropagation prevents Radix Dialog's document-level pointerdown listener
-      // from treating a keyboard tap as an "outside click" and closing the modal.
-      onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
+      // Dialog close prevention is handled in DialogContent.onPointerDownOutside.
+      onPointerDown={(e) => e.preventDefault()}
       style={{
         position: 'fixed',
         bottom: 0,
