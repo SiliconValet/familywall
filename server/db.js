@@ -101,6 +101,18 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_calendar_events_start ON calendar_events(start_time);
   CREATE INDEX IF NOT EXISTS idx_calendar_events_start_date ON calendar_events(start_date);
   CREATE INDEX IF NOT EXISTS idx_calendar_sources_selected ON calendar_sources(selected);
+
+  CREATE TABLE IF NOT EXISTS chess_games (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    fen TEXT NOT NULL DEFAULT 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+    moves TEXT NOT NULL DEFAULT '[]',
+    white_player_id INTEGER,
+    black_player_id INTEGER,
+    created_at INTEGER DEFAULT (unixepoch()),
+    updated_at INTEGER DEFAULT (unixepoch()),
+    FOREIGN KEY (white_player_id) REFERENCES family_members(id) ON DELETE SET NULL,
+    FOREIGN KEY (black_player_id) REFERENCES family_members(id) ON DELETE SET NULL
+  );
 `);
 
 // Seed default PIN (1234) if no PIN exists yet (per D-01)
