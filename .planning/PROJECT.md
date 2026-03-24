@@ -26,6 +26,13 @@ Family members complete their chores consistently because the system makes tasks
 - [x] Backend REST API with SQLite database
 - [x] Frontend React components with TypeScript types
 
+**Phase 5: Chess Board** (Validated in Phase 5: chess-board)
+- [x] Chess board with tap-tap piece movement (D-01: tap-tap chosen over drag-and-drop)
+- [x] Chess move history display in algebraic notation
+- [x] Chess game controls (new game, undo move)
+- [x] Family member selection for chess players
+- [x] Game persistence across page reload (SQLite single-row storage)
+
 ### Active
 
 - [ ] Chore system with family member assignments
@@ -34,10 +41,6 @@ Family members complete their chores consistently because the system makes tasks
 - [ ] Parental PIN protection for adding chores and settings
 - [ ] Google Calendar integration with multiple calendar support
 - [ ] Calendar views: daily, weekly, monthly
-- [ ] Chess board with drag-and-drop or tap-to-move controls
-- [ ] Chess move history display in algebraic notation
-- [ ] Chess game controls (new game, undo move)
-- [ ] Family member selection for chess players
 - [ ] Visual feedback for all touch interactions
 - [ ] Offline-capable chore system (local data)
 - [ ] Auto-refresh calendar data (configurable interval)
@@ -97,4 +100,4 @@ Family members complete their chores consistently because the system makes tasks
 | Chores as priority feature | Most critical for family value, build this robustly first | — Pending |
 
 ---
-*Last updated: 2026-03-22 after Phase 2 completion*
+*Last updated: 2026-03-24 after Phase 5 completion*
