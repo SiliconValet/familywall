@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import choreRoutes from './routes/chores.js';
 import calendarRoutes from './routes/calendar.js';
 import chessRoutes from './routes/chess.js';
+import systemRoutes from './routes/system.js';
 import cron from 'node-cron';
 import { generateRecurringChores } from './jobs/recurring-chores.js';
 import { fileURLToPath } from 'url';
@@ -29,6 +30,7 @@ await fastify.register(authRoutes);
 await fastify.register(choreRoutes);
 await fastify.register(calendarRoutes);
 await fastify.register(chessRoutes);
+await fastify.register(systemRoutes);
 
 // Register static file serving for React build
 await fastify.register(fastifyStatic, {
