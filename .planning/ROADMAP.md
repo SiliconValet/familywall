@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Chore System** - Offline-first chore management with recurring tasks
 - [ ] **Phase 4: Calendar Integration** - Google Calendar sync with multi-view display
 - [x] **Phase 5: Chess Board** - Touch-enabled chess game with persistent state (completed 2026-03-24)
-- [ ] **Phase 6: Polish & Integration** - Production hardening and family user testing
+- [x] **Phase 6: Polish & Integration** - Production hardening and family user testing (completed 2026-03-24)
 
 ## Phase Details
 
@@ -125,7 +125,7 @@ Plans:
 - [x] 06-01-PLAN.md — Backend color system, PIN session timeout, and calendar offline toast
 - [x] 06-02-PLAN.md — Frontend color UI: swatch picker, hex badges, calendar event colors
 - [x] 06-03-PLAN.md — Settings tab restructure and Exit Kiosk Mode endpoint
-- [ ] 06-04-PLAN.md — On-screen virtual keyboard with react-simple-keyboard
+- [x] 06-04-PLAN.md — On-screen virtual keyboard with react-simple-keyboard
 
 ## Progress
 
@@ -139,4 +139,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
 | 5. Chess Board | 4/4 | Complete   | 2026-03-24 |
-| 6. Polish & Integration | 4/5 | In Progress|  |
+| 6. Polish & Integration | 5/5 | Complete   | 2026-03-24 |
