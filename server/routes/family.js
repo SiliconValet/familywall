@@ -1,5 +1,10 @@
 import db from '../db.js';
 
+const PALETTE = [
+  '#D50000', '#E67C73', '#F4511E', '#F6BF26',
+  '#33B679', '#0B8043', '#039BE5', '#3F51B5'
+];
+
 export default async function familyRoutes(fastify, options) {
   // GET all family members (sorted alphabetically per D-08)
   fastify.get('/api/family', {
@@ -12,6 +17,7 @@ export default async function familyRoutes(fastify, options) {
             properties: {
               id: { type: 'integer' },
               name: { type: 'string' },
+              color: { type: ['string', 'null'] },
               created_at: { type: 'integer' },
               updated_at: { type: 'integer' }
             }
@@ -31,7 +37,8 @@ export default async function familyRoutes(fastify, options) {
         type: 'object',
         required: ['name'],
         properties: {
-          name: { type: 'string', minLength: 1, maxLength: 100 }
+          name: { type: 'string', minLength: 1, maxLength: 100 },
+          color: { type: 'string' }
         }
       },
       response: {
@@ -40,6 +47,7 @@ export default async function familyRoutes(fastify, options) {
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            color: { type: ['string', 'null'] },
             created_at: { type: 'integer' },
             updated_at: { type: 'integer' }
           }
@@ -47,9 +55,17 @@ export default async function familyRoutes(fastify, options) {
       }
     }
   }, async (request, reply) => {
-    const { name } = request.body;
-    const stmt = db.prepare('INSERT INTO family_members (name) VALUES (?)');
-    const result = stmt.run(name.trim());
+    const { name, color } = request.body;
+    let assignedColor = color;
+    if (!assignedColor) {
+      const usedColors = db
+        .prepare('SELECT color FROM family_members WHERE color IS NOT NULL')
+        .all()
+        .map(r => r.color);
+      assignedColor = PALETTE.find(c => !usedColors.includes(c)) ?? PALETTE[0];
+    }
+    const stmt = db.prepare('INSERT INTO family_members (name, color) VALUES (?, ?)');
+    const result = stmt.run(name.trim(), assignedColor);
 
     // Fetch the created row
     const created = db.prepare('SELECT * FROM family_members WHERE id = ?').get(result.lastInsertRowid);
@@ -70,7 +86,8 @@ export default async function familyRoutes(fastify, options) {
         type: 'object',
         required: ['name'],
         properties: {
-          name: { type: 'string', minLength: 1, maxLength: 100 }
+          name: { type: 'string', minLength: 1, maxLength: 100 },
+          color: { type: 'string' }
         }
       },
       response: {
@@ -79,6 +96,7 @@ export default async function familyRoutes(fastify, options) {
           properties: {
             id: { type: 'integer' },
             name: { type: 'string' },
+            color: { type: ['string', 'null'] },
             created_at: { type: 'integer' },
             updated_at: { type: 'integer' }
           }
@@ -87,19 +105,24 @@ export default async function familyRoutes(fastify, options) {
     }
   }, async (request, reply) => {
     const { id } = request.params;
-    const { name } = request.body;
+    const { name, color } = request.body;
 
-    const stmt = db.prepare('UPDATE family_members SET name = ?, updated_at = unixepoch() WHERE id = ?');
-    const result = stmt.run(name.trim(), id);
+    let stmt;
+    if (color !== undefined) {
+      stmt = db.prepare('UPDATE family_members SET name = ?, color = ?, updated_at = unixepoch() WHERE id = ?');
+      stmt.run(name.trim(), color, id);
+    } else {
+      stmt = db.prepare('UPDATE family_members SET name = ?, updated_at = unixepoch() WHERE id = ?');
+      stmt.run(name.trim(), id);
+    }
 
     // Check if row was found
-    if (result.changes === 0) {
+    const updated = db.prepare('SELECT * FROM family_members WHERE id = ?').get(id);
+    if (!updated) {
       reply.code(404).send({ error: 'Family member not found' });
       return;
     }
 
-    // Fetch the updated row
-    const updated = db.prepare('SELECT * FROM family_members WHERE id = ?').get(id);
     return updated;
   });
 

@@ -115,6 +115,12 @@ db.exec(`
   );
 `);
 
+// Phase 6: Add color column to family_members (idempotent)
+const cols = db.pragma('table_info(family_members)');
+if (!cols.find(c => c.name === 'color')) {
+  db.exec(`ALTER TABLE family_members ADD COLUMN color TEXT`);
+}
+
 // Seed default PIN (1234) if no PIN exists yet (per D-01)
 const existingPin = db.prepare('SELECT value FROM settings WHERE key = ?').get('parental_pin');
 if (!existingPin) {
