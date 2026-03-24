@@ -58,17 +58,14 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
   };
 
   const handleToggleCalendar = async (sourceId: string, newSelected: boolean) => {
-    console.log('Toggle calendar:', { sourceId, encoded: encodeURIComponent(sourceId), newSelected });
     try {
       const url = `/api/calendar/sources/${encodeURIComponent(sourceId)}`;
-      console.log('Fetch URL:', url);
       const res = await fetch(url, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ selected: newSelected }),
       });
       if (!res.ok) {
-        console.error('Toggle failed:', res.status, await res.text());
         throw new Error('Failed to toggle calendar');
       }
 
@@ -147,44 +144,22 @@ export function CalendarSettings({ open, onClose }: CalendarSettingsProps) {
               <div className="space-y-3">
                 <h4 className="text-sm font-medium">Calendars to Display</h4>
                 <div className="space-y-2">
-                  {sources.map((source, index) => (
-                    <div key={source.id} className="flex items-center gap-2 min-h-12">
-                      <Checkbox
-                        id={`calendar-${index}`}
-                        checked={source.selected}
-                        onCheckedChange={(checked) => handleToggleCalendar(source.id, checked === true)}
-                      />
-                      <Label
-                        htmlFor={`calendar-${index}`}
-                        className="text-lg cursor-pointer flex-1"
-                      >
-                        {source.summary}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Divider */}
-              <div className="border-t border-border"></div>
-
-              {/* Section 3: Family Member Colors */}
-              <div className="space-y-3">
-                <h4 className="text-sm font-medium">Family Member Colors</h4>
-                <div className="space-y-2">
-                  {sources.filter(s => s.selected).map((source) => {
-                    const colorClass = source.familyMemberId
-                      ? `bg-chart-${((source.familyMemberId - 1) % 4) + 1}`
-                      : 'bg-muted';
-
+                  {sources.map((source, index) => {
                     return (
-                      <div key={source.id} className="flex items-center gap-2 text-base">
-                        <span className="flex-1">{source.summary}</span>
-                        <span className="text-muted-foreground">→</span>
-                        <div className="flex items-center gap-2">
-                          <span>{source.familyMemberName || 'Default'}</span>
-                          <div className={`w-4 h-4 rounded-full ${colorClass}`}></div>
-                        </div>
+                      <div key={index} className="flex items-center gap-2 min-h-12">
+                        <Checkbox
+                          id={`calendar-${index}`}
+                          checked={source.selected}
+                          onCheckedChange={(checked) => {
+                            handleToggleCalendar(source.id, checked === true);
+                          }}
+                        />
+                        <Label
+                          htmlFor={`calendar-${index}`}
+                          className="text-lg cursor-pointer flex-1"
+                        >
+                          {source.summary}
+                        </Label>
                       </div>
                     );
                   })}
