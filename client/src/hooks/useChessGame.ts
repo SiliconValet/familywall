@@ -58,11 +58,6 @@ export function useChessGame() {
       if (!res.ok) return;
 
       const data = await res.json();
-      // Reconstruct chess instance from returned state
-      const newChess = new Chess();
-      for (const san of data.moves) {
-        newChess.move(san);
-      }
       chess.load(data.fen);
       setFen(data.fen);
       setMoves(data.moves);
