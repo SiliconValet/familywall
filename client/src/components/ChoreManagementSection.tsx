@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import type { Chore, RecurrenceConfig } from '@/types/chore';
 
 const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DEFAULT_COLOR = '#039BE5';
 
 function describeSchedule(chore: Chore): string {
   if (!chore.is_recurring) return 'One-time';
@@ -70,10 +71,13 @@ export function ChoreManagementSection() {
         <p className="text-muted-foreground">No chores defined yet.</p>
       ) : (
         <div className="flex flex-col gap-2">
-          {chores.map((chore) => (
+          {chores.map((chore) => {
+            const memberColor = members.find(m => m.id === chore.assigned_to)?.color || DEFAULT_COLOR;
+            return (
             <div
               key={chore.id}
-              className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3"
+              className="flex items-center justify-between rounded-lg bg-card px-4 py-3"
+              style={{ borderLeftWidth: '4px', borderLeftColor: memberColor }}
             >
               <div>
                 <p className="font-medium">{chore.title}</p>
@@ -99,7 +103,8 @@ export function ChoreManagementSection() {
                 </Button>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
