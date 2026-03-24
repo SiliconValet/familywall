@@ -3,10 +3,11 @@ import { ChoreList } from './components/ChoreList';
 import { FamilyList } from './components/FamilyList';
 import { CalendarView } from './components/calendar/CalendarView';
 import { CalendarSettings } from './components/calendar/CalendarSettings';
+import { ChessPage } from './components/chess/ChessPage';
 import { Button } from './components/ui/button';
 
 export default function App() {
-  const [view, setView] = useState<'chores' | 'calendar' | 'family'>('chores');
+  const [view, setView] = useState<'chores' | 'calendar' | 'family' | 'chess'>('chores');
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -34,11 +35,19 @@ export default function App() {
           >
             Family
           </Button>
+          <Button
+            variant={view === 'chess' ? 'default' : 'outline'}
+            className="min-h-12"
+            onClick={() => setView('chess')}
+          >
+            Chess
+          </Button>
         </div>
       </nav>
       {view === 'chores' && <ChoreList />}
       {view === 'calendar' && <CalendarView onOpenSettings={() => setSettingsOpen(true)} />}
       {view === 'family' && <FamilyList />}
+      {view === 'chess' && <ChessPage />}
       <CalendarSettings open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </main>
   );
