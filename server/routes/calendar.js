@@ -268,7 +268,8 @@ export default async function calendarRoutes(fastify, options) {
               status: { type: 'string' },
               calendarName: { type: 'string' },
               familyMemberId: { type: ['integer', 'null'] },
-              familyMemberName: { type: ['string', 'null'] }
+              familyMemberName: { type: ['string', 'null'] },
+              familyMemberColor: { type: ['string', 'null'] }
             }
           }
         }
@@ -292,7 +293,8 @@ export default async function calendarRoutes(fastify, options) {
         ce.status,
         cs.summary as calendarName,
         cs.family_member_id as familyMemberId,
-        fm.name as familyMemberName
+        fm.name as familyMemberName,
+        fm.color as familyMemberColor
       FROM calendar_events ce
       JOIN calendar_sources cs ON ce.calendar_source_id = cs.id
       LEFT JOIN family_members fm ON cs.family_member_id = fm.id

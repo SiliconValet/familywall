@@ -14,6 +14,7 @@ export interface CalendarEvent {
   status: string;
   familyMemberId: number | null;
   familyMemberName: string | null;
+  familyMemberColor: string | null;
   calendarName: string;
 }
 

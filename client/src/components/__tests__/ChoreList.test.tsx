@@ -100,8 +100,8 @@ describe('ChoreList with active chores', () => {
     ];
 
     const mockMembers = [
-      { id: 1, name: 'Alice', created_at: 123, updated_at: 123 },
-      { id: 2, name: 'Bob', created_at: 124, updated_at: 124 },
+      { id: 1, name: 'Alice', color: '#D50000', created_at: 123, updated_at: 123 },
+      { id: 2, name: 'Bob', color: '#E67C73', created_at: 124, updated_at: 124 },
     ];
 
     const { useChoreData } = await import('@/hooks/useChoreData');
