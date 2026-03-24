@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Chromium automatically restarts daily at 3am without manual intervention
   3. Screen stays on continuously without blanking or sleep mode
   4. Node.js backend runs under PM2 with automatic restart on crashes or memory limits
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
 - [x] 01-01-PLAN.md — Monorepo foundation with npm workspaces and PM2-managed backend
@@ -65,7 +65,7 @@ Plans:
   3. User can view chore completion data by family member via weekly summary and completion counts
   4. User can set chores as recurring (daily/weekly) and they auto-generate at configured time
   5. Chore system works completely offline without internet connection
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
 - [x] 03-01-PLAN.md — Chores table schema, REST API (CRUD/complete/undo), cron job for recurring generation
@@ -83,7 +83,7 @@ Plans:
   3. Events display with color-coding by family member and show current time indicator in daily view
   4. User can navigate previous/next periods and jump to today with single tap
   5. Calendar automatically refreshes every 15 minutes with latest events from Google
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
 - [x] 04-01-PLAN.md — Backend calendar infrastructure: SQLite schema, Google Calendar OAuth, REST API, sync
@@ -101,7 +101,7 @@ Plans:
   3. Move history displays in algebraic notation with auto-scroll to latest move
   4. User can start new game (with confirmation) and undo last move
   5. Game state persists across browser restarts and daily Chromium reboots
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
 - [x] 05-00-PLAN.md — Wave 0 test stubs: behavioral tests for ChessBoard, MoveHistory, useChessGame
@@ -118,9 +118,10 @@ Plans:
   2. Application runs for 24+ hours without memory leaks, crashes, or performance degradation
   3. Offline indicators appear when internet unavailable and retry logic handles API failures gracefully
   4. Family members can complete daily usage scenarios without confusion or assistance
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
+- [ ] 06-00-PLAN.md — Wave 0 test scaffolds: usePinAuth, FamilyFormModal, VirtualKeyboard, ChoreCard
 - [ ] 06-01-PLAN.md — Backend color system, PIN session timeout, and calendar offline toast
 - [ ] 06-02-PLAN.md — Frontend color UI: swatch picker, hex badges, calendar event colors
 - [ ] 06-03-PLAN.md — Settings tab restructure and Exit Kiosk Mode endpoint
@@ -138,4 +139,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
 | 5. Chess Board | 4/4 | Complete   | 2026-03-24 |
-| 6. Polish & Integration | 0/4 | Not started | - |
+| 6. Polish & Integration | 0/5 | Not started | - |
