@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { toast } from 'sonner';
 import type { CalendarEvent, CalendarAuthStatus, MergedTimelineItem } from '../types/calendar';
 import type { Chore } from '../types/chore';
-import { startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, format } from 'date-fns';
+import { startOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, addDays, format } from 'date-fns';
 
 export function useCalendarData(viewDate: Date, viewMode: 'daily' | 'weekly' | 'monthly') {
   const [events, setEvents] = useState<CalendarEvent[]>([]);
@@ -11,18 +11,20 @@ export function useCalendarData(viewDate: Date, viewMode: 'daily' | 'weekly' | '
   const [error, setError] = useState<string | null>(null);
   const [authStatus, setAuthStatus] = useState<CalendarAuthStatus>({ connected: false, email: null });
 
-  // Compute date range based on view mode
+  // Compute date range based on view mode.
+  // The server SQL uses exclusive end (start_time < end), so `end` must be
+  // the day *after* the last day we want included.
   const dateRange = useMemo(() => {
     let start: Date, end: Date;
     if (viewMode === 'daily') {
       start = startOfDay(viewDate);
-      end = endOfDay(viewDate);
+      end = addDays(startOfDay(viewDate), 1);
     } else if (viewMode === 'weekly') {
       start = startOfWeek(viewDate, { weekStartsOn: 1 }); // Monday per D-13
-      end = endOfWeek(viewDate, { weekStartsOn: 1 });
+      end = addDays(endOfWeek(viewDate, { weekStartsOn: 1 }), 1);
     } else {
       start = startOfMonth(viewDate);
-      end = endOfMonth(viewDate);
+      end = addDays(endOfMonth(viewDate), 1);
     }
     return { start: format(start, 'yyyy-MM-dd'), end: format(end, 'yyyy-MM-dd') };
   }, [viewDate, viewMode]);
@@ -53,14 +55,14 @@ export function useCalendarData(viewDate: Date, viewMode: 'daily' | 'weekly' | '
 
   const fetchChores = useCallback(async () => {
     try {
-      const res = await fetch(`/api/chores?view=${viewMode === 'monthly' ? 'weekly' : viewMode}`);
+      const res = await fetch(`/api/chores?start=${dateRange.start}&end=${dateRange.end}`);
       if (!res.ok) throw new Error('Failed to fetch chores');
       const data: Chore[] = await res.json();
       setChores(data);
     } catch {
       // Chores fetch failure is non-critical for calendar view
     }
-  }, [viewMode]);
+  }, [dateRange]);
 
   const fetchAll = useCallback(async () => {
     setLoading(true);

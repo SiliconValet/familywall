@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ChoreList } from './components/ChoreList';
 import { FamilyList } from './components/FamilyList';
 import { CalendarView } from './components/calendar/CalendarView';
 import { CalendarSettings } from './components/calendar/CalendarSettings';
@@ -9,7 +8,7 @@ import { KeyboardProvider } from './context/KeyboardContext';
 import { VirtualKeyboard } from './components/VirtualKeyboard';
 
 export default function App() {
-  const [view, setView] = useState<'chores' | 'calendar' | 'chess' | 'settings'>('chores');
+  const [view, setView] = useState<'calendar' | 'chess' | 'settings'>('calendar');
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -17,13 +16,6 @@ export default function App() {
       <main className="min-h-screen bg-background">
         <nav className="border-b border-border bg-card">
           <div className="flex gap-2 p-4">
-            <Button
-              variant={view === 'chores' ? 'default' : 'outline'}
-              className="min-h-12"
-              onClick={() => setView('chores')}
-            >
-              Chores
-            </Button>
             <Button
               variant={view === 'calendar' ? 'default' : 'outline'}
               className="min-h-12"
@@ -47,7 +39,6 @@ export default function App() {
             </Button>
           </div>
         </nav>
-        {view === 'chores' && <ChoreList />}
         {view === 'calendar' && <CalendarView onOpenSettings={() => setSettingsOpen(true)} />}
         {view === 'chess' && <ChessPage />}
         {view === 'settings' && <FamilyList />}

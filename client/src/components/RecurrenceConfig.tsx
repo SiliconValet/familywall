@@ -36,7 +36,7 @@ export function RecurrenceConfig({ value, onChange }: RecurrenceConfigProps) {
         break;
       case 'interval':
         newDays = [];
-        newInterval = value.interval || 1;
+        newInterval = value.interval || 2;
         break;
     }
 
@@ -44,6 +44,9 @@ export function RecurrenceConfig({ value, onChange }: RecurrenceConfigProps) {
       frequency: frequency as RecurrenceConfigType['frequency'],
       days: newDays,
       interval: newInterval,
+      startDate: frequency === 'interval'
+        ? (value.startDate || new Date().toISOString().split('T')[0])
+        : undefined,
     });
   };
 
@@ -61,11 +64,12 @@ export function RecurrenceConfig({ value, onChange }: RecurrenceConfigProps) {
   const handleIntervalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const interval = parseInt(e.target.value, 10);
     if (!isNaN(interval) && interval >= 1 && interval <= 365) {
-      onChange({
-        ...value,
-        interval,
-      });
+      onChange({ ...value, interval });
     }
+  };
+
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange({ ...value, startDate: e.target.value });
   };
 
   return (
@@ -106,17 +110,30 @@ export function RecurrenceConfig({ value, onChange }: RecurrenceConfigProps) {
       )}
 
       {value.frequency === 'interval' && (
-        <div className="space-y-2">
-          <Label htmlFor="interval">Repeat every _ days</Label>
-          <Input
-            id="interval"
-            type="number"
-            min={1}
-            max={365}
-            value={value.interval || 1}
-            onChange={handleIntervalChange}
-            className="min-h-12"
-          />
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="interval">Repeat every _ days</Label>
+            <Input
+              id="interval"
+              type="number"
+              min={1}
+              max={365}
+              value={value.interval || 2}
+              onChange={handleIntervalChange}
+              className="min-h-12"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="startDate">Starting</Label>
+            <Input
+              id="startDate"
+              type="date"
+              data-no-keyboard
+              value={value.startDate || new Date().toISOString().split('T')[0]}
+              onChange={handleStartDateChange}
+              className="min-h-12"
+            />
+          </div>
         </div>
       )}
     </div>

@@ -21,6 +21,7 @@ export interface RecurrenceConfig {
   frequency: 'daily' | 'weekly' | 'custom' | 'interval';
   days: number[]; // 0=Sunday through 6=Saturday
   interval?: number; // For 'interval' frequency
+  startDate?: string; // ISO date string (yyyy-MM-dd) for 'interval' frequency anchor
 }
 
 export interface ChoreFormData {

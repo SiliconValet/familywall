@@ -41,6 +41,7 @@ export function KeyboardProvider({ children }: { children: ReactNode }) {
         target.dataset.noKeyboard !== undefined ||
         target.type === 'tel' ||
         target.type === 'number' ||
+        target.type === 'date' ||
         target.type === 'hidden' ||
         target.type === 'checkbox' ||
         target.type === 'radio'

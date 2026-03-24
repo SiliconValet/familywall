@@ -6,6 +6,7 @@ import { FamilyFormModal } from './FamilyFormModal';
 import { PinModal } from './PinModal';
 import { DeleteConfirmModal } from './DeleteConfirmModal';
 import { ChangePinModal } from './ChangePinModal';
+import { ChoreManagementSection } from './ChoreManagementSection';
 import { Button } from '@/components/ui/button';
 import { FamilyMember } from '@/types/family';
 import { toast } from 'sonner';
@@ -101,6 +102,9 @@ export function FamilyList() {
           ))}
         </div>
       )}
+
+      {/* Chores Section */}
+      <ChoreManagementSection />
 
       {/* System Settings Section */}
       <div className="mt-8 pt-6 border-t border-border">

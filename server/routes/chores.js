@@ -1,13 +1,19 @@
 import db from '../db.js';
+import { generateRecurringChores } from '../jobs/recurring-chores.js';
 
 export default async function choreRoutes(fastify, options) {
-  // GET all chores with view filtering (daily or weekly)
+  // GET all chores with date-range filtering.
+  // Accepts either:
+  //   ?start=yyyy-MM-dd&end=yyyy-MM-dd  (exclusive end, mirrors the events API)
+  //   ?view=daily|weekly               (legacy: anchors to today — used by the chore-list tab)
   fastify.get('/api/chores', {
     schema: {
       querystring: {
         type: 'object',
         properties: {
-          view: { type: 'string', enum: ['daily', 'weekly'] }
+          view: { type: 'string', enum: ['daily', 'weekly', 'templates'] },
+          start: { type: 'string' },
+          end: { type: 'string' }
         }
       },
       response: {
@@ -37,17 +43,25 @@ export default async function choreRoutes(fastify, options) {
       }
     }
   }, async (request, reply) => {
-    const { view = 'daily' } = request.query;
+    const { view = 'daily', start, end } = request.query;
 
-    let whereClause = `1=1`;
+    // Never return recurring template rows — only generated instances and one-off chores
+    let whereClause = `(c.parent_chore_id IS NOT NULL OR c.is_recurring = 0)`;
 
-    if (view === 'daily') {
-      // Filter to chores created today (localtime)
-      whereClause = `DATE(c.created_at, 'unixepoch', 'localtime') = DATE('now', 'localtime')`;
+    if (start && end) {
+      // Explicit date range (yyyy-MM-dd, exclusive end) — used by the calendar views
+      whereClause += ` AND DATE(c.created_at, 'unixepoch', 'localtime') >= '${start}'
+                       AND DATE(c.created_at, 'unixepoch', 'localtime') < '${end}'`;
+    } else if (view === 'templates') {
+      // Management view: all chore definitions (templates and standalone one-offs)
+      whereClause = `c.parent_chore_id IS NULL`;
+    } else if (view === 'daily') {
+      // Legacy: filter to chores created today (localtime)
+      whereClause += ` AND DATE(c.created_at, 'unixepoch', 'localtime') = DATE('now', 'localtime')`;
     } else if (view === 'weekly') {
-      // Filter to chores created this week (Sunday-Saturday)
-      whereClause = `c.created_at >= unixepoch(DATE('now', 'localtime', 'weekday 0', '-6 days'))
-                     AND c.created_at < unixepoch(DATE('now', 'localtime', 'weekday 0', '+1 day'))`;
+      // Legacy: filter to chores created this week (Mon–Sun)
+      whereClause += ` AND c.created_at >= unixepoch(DATE('now', 'localtime', 'weekday 0', '-6 days'))
+                       AND c.created_at < unixepoch(DATE('now', 'localtime', 'weekday 0', '+1 day'))`;
     }
 
     const chores = db.prepare(`
@@ -133,6 +147,12 @@ export default async function choreRoutes(fastify, options) {
 
     // Fetch the created row
     const created = db.prepare('SELECT * FROM chores WHERE id = ?').get(result.lastInsertRowid);
+
+    // For recurring chores, immediately generate today's instance so it appears
+    // in the chore list without waiting for the nightly cron job.
+    if (is_recurring) {
+      generateRecurringChores();
+    }
 
     reply.code(201).send(created);
   });

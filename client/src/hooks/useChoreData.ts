@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'sonner';
 import type { Chore, ChoreFormData, ChoreStats } from '../types/chore';
 
-type ViewMode = 'daily' | 'weekly';
+type ViewMode = 'daily' | 'weekly' | 'templates';
 
 export function useChoreData(view: ViewMode = 'daily') {
   const [chores, setChores] = useState<Chore[]>([]);

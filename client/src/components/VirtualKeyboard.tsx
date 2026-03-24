@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 import { useKeyboard } from '../context/KeyboardContext';
@@ -8,21 +8,30 @@ const layout = {
     '1 2 3 4 5 6 7 8 9 0 {bksp}',
     'q w e r t y u i o p',
     'a s d f g h j k l',
-    'z x c v b n m {space}',
-    '{done}'
-  ]
+    '{shift} z x c v b n m',
+    ', {space} . {done}',
+  ],
+  shift: [
+    '1 2 3 4 5 6 7 8 9 0 {bksp}',
+    'Q W E R T Y U I O P',
+    'A S D F G H J K L',
+    '{shift} Z X C V B N M',
+    ', {space} . {done}',
+  ],
 };
 
 const display = {
   '{bksp}': '\u232B',
   '{space}': 'Space',
   '{done}': 'Done',
+  '{shift}': '\u21E7',
 };
 
 export function VirtualKeyboard() {
   const { visible, inputRef, hideKeyboard } = useKeyboard();
   const keyboardRef = useRef<any>(null);
   const prevInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+  const [layoutName, setLayoutName] = useState<'default' | 'shift'>('default');
 
   // Reset keyboard buffer when input changes (per RESEARCH.md Pitfall 2)
   useEffect(() => {
@@ -50,6 +59,10 @@ export function VirtualKeyboard() {
   }, [inputRef]);
 
   const handleKeyPress = useCallback((button: string) => {
+    if (button === '{shift}') {
+      setLayoutName((prev) => (prev === 'default' ? 'shift' : 'default'));
+      return;
+    }
     if (button === '{done}') {
       inputRef?.blur();
       hideKeyboard();
@@ -76,6 +89,14 @@ export function VirtualKeyboard() {
       .hg-theme-default .hg-button:active {
         transform: scale(0.96);
       }
+      .hg-theme-default .hg-button[data-skbtn="{shift}"] {
+        flex-grow: 0 !important;
+        min-width: 52px !important;
+      }
+      .hg-theme-default.shift .hg-button[data-skbtn="{shift}"] {
+        background: var(--primary) !important;
+        color: var(--primary-foreground) !important;
+      }
     `;
     document.head.appendChild(style);
     return () => { document.head.removeChild(style); };
@@ -85,7 +106,6 @@ export function VirtualKeyboard() {
     <div
       data-keyboard
       // preventDefault keeps the focused input from blurring when tapping a key.
-      // Dialog close prevention is handled in DialogContent.onPointerDownOutside.
       onPointerDown={(e) => e.preventDefault()}
       style={{
         position: 'fixed',
@@ -100,16 +120,21 @@ export function VirtualKeyboard() {
         borderTop: '1px solid var(--border)',
         willChange: visible ? 'transform' : 'auto',
         overflow: 'hidden',
+        // Radix Dialog sets body { pointer-events: none } when open, which would
+        // cause keyboard taps to pass through (no target) and be misidentified as
+        // outside-clicks, dismissing the dialog. Explicitly opt back in.
+        pointerEvents: 'auto',
       }}
     >
       <div style={{ padding: '8px 4px' }}>
         <Keyboard
           keyboardRef={(r: any) => (keyboardRef.current = r)}
           layout={layout}
+          layoutName={layoutName}
           display={display}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-          theme="hg-theme-default"
+          theme={`hg-theme-default${layoutName === 'shift' ? ' shift' : ''}`}
           mergeDisplay
         />
       </div>
