@@ -123,7 +123,7 @@ Plans:
 Plans:
 - [x] 06-00-PLAN.md — Wave 0 test scaffolds: usePinAuth, FamilyFormModal, VirtualKeyboard, ChoreCard
 - [x] 06-01-PLAN.md — Backend color system, PIN session timeout, and calendar offline toast
-- [ ] 06-02-PLAN.md — Frontend color UI: swatch picker, hex badges, calendar event colors
+- [x] 06-02-PLAN.md — Frontend color UI: swatch picker, hex badges, calendar event colors
 - [ ] 06-03-PLAN.md — Settings tab restructure and Exit Kiosk Mode endpoint
 - [ ] 06-04-PLAN.md — On-screen virtual keyboard with react-simple-keyboard
 
@@ -139,4 +139,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
 | 5. Chess Board | 4/4 | Complete   | 2026-03-24 |
-| 6. Polish & Integration | 2/5 | In Progress|  |
+| 6. Polish & Integration | 3/5 | In Progress|  |
