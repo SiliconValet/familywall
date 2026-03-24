@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Foundation & Family Management** - Backend skeleton, React app, and family member CRUD
 - [ ] **Phase 3: Chore System** - Offline-first chore management with recurring tasks
 - [ ] **Phase 4: Calendar Integration** - Google Calendar sync with multi-view display
-- [ ] **Phase 5: Chess Board** - Touch-enabled chess game with persistent state
+- [x] **Phase 5: Chess Board** - Touch-enabled chess game with persistent state (completed 2026-03-24)
 - [ ] **Phase 6: Polish & Integration** - Production hardening and family user testing
 
 ## Phase Details
@@ -107,7 +107,7 @@ Plans:
 - [x] 05-00-PLAN.md — Wave 0 test stubs: behavioral tests for ChessBoard, MoveHistory, useChessGame
 - [x] 05-01-PLAN.md — Backend chess infrastructure: SQLite schema, REST API, chess.js install, TypeScript types, useChessGame hook
 - [x] 05-02-PLAN.md — Chess UI components: ChessBoard, ChessSquare, ChessSidebar, MoveHistory, PlayerBadge
-- [ ] 05-03-PLAN.md — App wiring: ChessPage, PlayerPickerModal, NewGameConfirmDialog, Chess tab in navigation
+- [x] 05-03-PLAN.md — App wiring: ChessPage, PlayerPickerModal, NewGameConfirmDialog, Chess tab in navigation
 
 ### Phase 6: Polish & Integration
 **Goal**: Application runs smoothly on real hardware with production-quality UX and successful family user acceptance
@@ -136,5 +136,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Foundation & Family Management | 3/3 | Complete | - |
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
-| 5. Chess Board | 3/4 | In Progress|  |
+| 5. Chess Board | 4/4 | Complete   | 2026-03-24 |
 | 6. Polish & Integration | 0/TBD | Not started | - |
