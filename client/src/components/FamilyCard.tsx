@@ -12,7 +12,7 @@ interface FamilyCardProps {
 
 export function FamilyCard({ member, onEdit, onDelete }: FamilyCardProps) {
   return (
-    <Card className="min-h-14 p-4">
+    <Card className="min-h-14 p-4" style={{ borderLeftWidth: '4px', borderLeftColor: member.color }}>
       <CardContent className="p-0 flex items-center justify-between">
         <span className="text-lg font-normal">{member.name}</span>
         <div className="flex items-center gap-2">
