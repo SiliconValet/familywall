@@ -84,6 +84,9 @@ export function VirtualKeyboard() {
   return (
     <div
       data-keyboard
+      // preventDefault on pointerdown keeps the focused input from blurring when
+      // the user taps a key — standard technique for virtual keyboards
+      onPointerDown={(e) => e.preventDefault()}
       style={{
         position: 'fixed',
         bottom: 0,
