@@ -118,12 +118,13 @@ Plans:
   2. Application runs for 24+ hours without memory leaks, crashes, or performance degradation
   3. Offline indicators appear when internet unavailable and retry logic handles API failures gracefully
   4. Family members can complete daily usage scenarios without confusion or assistance
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Database schema, family CRUD API, and PIN auth endpoints
-- [ ] 02-02-PLAN.md — shadcn components, TypeScript types, data hooks, touch CSS
-- [ ] 02-03-PLAN.md — Family management UI (list, modals, PIN pad) with visual verification
+- [ ] 06-01-PLAN.md — Backend color system, PIN session timeout, and calendar offline toast
+- [ ] 06-02-PLAN.md — Frontend color UI: swatch picker, hex badges, calendar event colors
+- [ ] 06-03-PLAN.md — Settings tab restructure and Exit Kiosk Mode endpoint
+- [ ] 06-04-PLAN.md — On-screen virtual keyboard with react-simple-keyboard
 
 ## Progress
 
@@ -137,4 +138,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Chore System | 4/4 | Complete | - |
 | 4. Calendar Integration | 0/4 | Not started | - |
 | 5. Chess Board | 4/4 | Complete   | 2026-03-24 |
-| 6. Polish & Integration | 0/TBD | Not started | - |
+| 6. Polish & Integration | 0/4 | Not started | - |
