@@ -46,11 +46,20 @@ function DialogOverlay({
   )
 }
 
+/** Returns true if the event originated from inside the virtual keyboard overlay. */
+function isKeyboardEvent(e: { detail?: { originalEvent?: { target?: unknown } } }) {
+  const target = e.detail?.originalEvent?.target;
+  if (target instanceof Element) return !!target.closest('[data-keyboard]');
+  // Fallback: check if any keyboard element is currently in the DOM and visible
+  return !!document.querySelector('[data-keyboard]');
+}
+
 function DialogContent({
   className,
   children,
   showCloseButton = true,
   onPointerDownOutside,
+  onInteractOutside,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
@@ -65,16 +74,12 @@ function DialogContent({
           className
         )}
         onPointerDownOutside={(e) => {
-          // Prevent virtual keyboard taps from closing the dialog.
-          // Radix fires this via a document capture-phase listener, so
-          // stopPropagation on the keyboard div isn't enough — we must
-          // cancel the close here instead.
-          const target = e.detail.originalEvent.target as Element | null;
-          if (target?.closest?.('[data-keyboard]')) {
-            e.preventDefault();
-            return;
-          }
+          if (isKeyboardEvent(e)) { e.preventDefault(); return; }
           onPointerDownOutside?.(e);
+        }}
+        onInteractOutside={(e) => {
+          if (isKeyboardEvent(e)) { e.preventDefault(); return; }
+          onInteractOutside?.(e);
         }}
         {...props}
       >
